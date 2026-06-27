@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Своя Игра — Игрок</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { background:#0a0a1a; color:#fff; font-family:'Inter',-apple-system,sans-serif; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; user-select:none; }
+  .screen { display:none; width:100%; max-width:400px; flex-direction:column; align-items:center; }
+  .screen.active { display:flex; }
+
+  .logo { font-size:40px; font-weight:800; color:#f5c842; letter-spacing:2px; text-align:center; margin-bottom:6px; }
+  .logo-sub { font-size:14px; color:rgba(255,255,255,0.35); text-align:center; margin-bottom:36px; }
+  .inp { width:100%; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); border-radius:14px; padding:16px 18px; color:#fff; font-size:18px; text-align:center; outline:none; margin-bottom:14px; transition:border-color 0.2s; }
+  .inp:focus { border-color:#f5c842; }
+  .inp::placeholder { color:rgba(255,255,255,0.22); }
+  .btn-join { width:100%; padding:18px; background:#f5c842; color:#0a0a1a; border:none; border-radius:14px; font-size:17px; font-weight:700; cursor:pointer; }
+  .btn-join:active { opacity:0.88; transform:scale(0.97); }
+  .err { font-size:13px; color:#ff6b6b; text-align:center; margin-top:8px; min-height:20px; }
+
+  /* LOBBY */
+  .badge { background:rgba(245,200,66,0.12); border:1.5px solid rgba(245,200,66,0.3); border-radius:50px; padding:10px 24px; font-size:20px; font-weight:600; color:#f5c842; margin-bottom:24px; }
+  .lobby-ttl { font-size:20px; font-weight:700; margin-bottom:8px; text-align:center; }
+  .lobby-sub { font-size:14px; color:rgba(255,255,255,0.4); text-align:center; margin-bottom:32px; }
+  .online-box { width:100%; background:rgba(255,255,255,0.04); border-radius:14px; padding:16px; }
+  .online-lbl { font-size:11px; color:rgba(255,255,255,0.28); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+  .online-item { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:14px; }
+  .online-item:last-child { border-bottom:none; }
+  .odot { width:7px; height:7px; border-radius:50%; background:#2ecc71; flex-shrink:0; }
+
+  /* WAITING */
+  .wait-icon { font-size:60px; margin-bottom:18px; animation:float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .wait-ttl { font-size:20px; font-weight:700; text-align:center; margin-bottom:8px; }
+  .wait-sub { font-size:14px; color:rgba(255,255,255,0.38); text-align:center; }
+  .my-pts { margin-top:40px; text-align:center; }
+  .my-pts-lbl { font-size:11px; color:rgba(255,255,255,0.28); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+  .my-pts-val { font-size:38px; font-weight:800; }
+  .my-pts-val.neg { color:#ff6b6b; }
+
+  /* BUZZER */
+  .q-lbl { font-size:12px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; text-align:center; }
+  .q-cat { font-size:15px; color:#f5c842; font-weight:600; text-align:center; margin-bottom:6px; }
+  .q-pts { font-size:52px; font-weight:800; text-align:center; margin-bottom:36px; line-height:1; }
+  .buzzer-btn { width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff4444,#cc0000); border:none; box-shadow:0 0 0 8px rgba(200,0,0,0.18),0 8px 36px rgba(200,0,0,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.35); transition:transform 0.1s,box-shadow 0.1s; text-align:center; line-height:1.2; padding:16px; }
+  .buzzer-btn:active { transform:scale(0.92); box-shadow:0 0 0 4px rgba(200,0,0,0.15),0 4px 18px rgba(200,0,0,0.25); }
+  .buzzer-btn.pressed { background:radial-gradient(circle at 35% 35%,#444,#1a1a1a); box-shadow:0 0 0 6px rgba(100,100,100,0.12),0 4px 16px rgba(0,0,0,0.25); cursor:default; }
+  .buzzer-btn.winner { background:radial-gradient(circle at 35% 35%,#f5c842,#d4a017); box-shadow:0 0 0 8px rgba(245,200,66,0.22),0 8px 36px rgba(245,200,66,0.35); animation:wpulse 0.55s ease-in-out; }
+  @keyframes wpulse { 0%,100%{transform:scale(1)} 35%{transform:scale(1.09)} 65%{transform:scale(0.96)} }
+  .buz-status { font-size:15px; color:rgba(255,255,255,0.45); text-align:center; margin-top:18px; min-height:22px; }
+  .buz-status.win { color:#f5c842; font-weight:600; }
+  .buz-status.late { color:rgba(255,255,255,0.28); }
+
+  /* TRAP */
+  .trap-em { font-size:80px; text-align:center; margin-bottom:14px; }
+  .trap-nm { font-size:26px; font-weight:800; color:#f5c842; text-align:center; margin-bottom:10px; }
+  .trap-dc { font-size:16px; color:rgba(255,255,255,0.55); text-align:center; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<div id="join-screen" class="screen active">
+  <div class="logo">СВОЯ ИГРА</div>
+  <div class="logo-sub">Страница игрока</div>
+  <input class="inp" id="name-inp" placeholder="Введи своё имя" maxlength="20" autocomplete="off">
+  <button class="btn-join" onclick="joinGame()">Войти в игру</button>
+  <div class="err" id="err"></div>
+</div>
+
+<div id="lobby-screen" class="screen">
+  <div class="lobby-ttl">Ты в игре!</div>
+  <div class="lobby-sub">Жди пока ведущий начнёт</div>
+  <div class="badge" id="my-badge"></div>
+  <div class="online-box">
+    <div class="online-lbl">Игроки онлайн</div>
+    <div id="online-list"></div>
+  </div>
+</div>
+
+<div id="waiting-screen" class="screen">
+  <div class="wait-icon">🎯</div>
+  <div class="wait-ttl" id="wait-ttl">Ведущий выбирает вопрос...</div>
+  <div class="wait-sub">Будь готов нажать кнопку</div>
+  <div class="my-pts"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="w-pts">0</div></div>
+</div>
+
+<div id="buzzer-screen" class="screen">
+  <div class="q-lbl">Вопрос</div>
+  <div class="q-cat" id="q-cat"></div>
+  <div class="q-pts" id="q-pts"></div>
+  <button class="buzzer-btn" id="buz-btn" onclick="pressBuzzer()">ОТВЕТИТЬ</button>
+  <div class="buz-status" id="buz-status">Нажми первым!</div>
+  <div class="my-pts" style="margin-top:28px;"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="b-pts">0</div></div>
+</div>
+
+<div id="trap-screen" class="screen">
+  <div class="trap-em" id="t-em"></div>
+  <div class="trap-nm" id="t-nm"></div>
+  <div class="trap-dc" id="t-dc"></div>
+  <div class="my-pts" style="margin-top:40px;"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="t-pts">0</div></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, push, update, remove, onDisconnect }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const FB = {
+  apiKey:"AIzaSyDYPT9DXK5nVDutohOxORgAUWSLzpApevE",
+  authDomain:"my-game-d513c.firebaseapp.com",
+  databaseURL:"https://my-game-d513c-default-rtdb.firebaseio.com",
+  projectId:"my-game-d513c",
+  storageBucket:"my-game-d513c.firebasestorage.app",
+  messagingSenderId:"96446253861",
+  appId:"1:96446253861:web:356e3f19773f72bd1ca8cc"
+};
+const app = initializeApp(FB);
+const db = getDatabase(app);
+
+const TRAP_INFO = {
+  transfer:{emoji:'🔀',name:'Передай вопрос',desc:'Ведущий передаёт вопрос другому игроку.'},
+  auction: {emoji:'💰',name:'Аукцион',desc:'Делайте ставки! Ведущий определяет победителя.'},
+  bag:     {emoji:'🎁',name:'Кот в мешке',desc:'Вопрос ушёл случайному игроку!'},
+  minus:   {emoji:'💀',name:'Чёрная метка',desc:'Кому-то спишут −1000 баллов.'},
+  gift:    {emoji:'🌟',name:'Невиданная щедрость',desc:'Кому-то начислят +1500 баллов!'}
+};
+
+let myName='', hasPressed=false, lastQuestionKey='';
+
+function show(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+function setScore(v) {
+  ['w-pts','b-pts','t-pts'].forEach(id=>{ const el=document.getElementById(id); if(el){el.textContent=v;el.className='my-pts-val'+(v<0?' neg':'');} });
+}
+
+window.joinGame = function() {
+  const name = document.getElementById('name-inp').value.trim();
+  if (!name) { document.getElementById('err').textContent='Введи имя'; return; }
+  myName = name;
+  const key = name.replace(/\s/g,'_');
+  const connRef = ref(db, `game/connected/${key}`);
+  set(connRef, { name, ts: Date.now() });
+  onDisconnect(connRef).remove();
+  document.getElementById('my-badge').textContent = name;
+  show('lobby-screen');
+  listenGame();
+};
+
+function listenGame() {
+  onValue(ref(db,'game'), snap => {
+    const g = snap.val();
+    if (!g) return;
+
+    // Score
+    if (g.scores && g.scores[myName] !== undefined) setScore(g.scores[myName]);
+
+    // Online list
+    if (g.connected) {
+      document.getElementById('online-list').innerHTML =
+        Object.values(g.connected).map(p=>`<div class="online-item"><div class="odot"></div>${p.name}</div>`).join('');
+    }
+
+    const state = g.state;
+
+    if (state==='lobby' || !state) { show('lobby-screen'); return; }
+
+    if (state==='end') {
+      show('waiting-screen');
+      document.getElementById('wait-ttl').textContent='🏆 Игра окончена!';
+      return;
+    }
+
+    if (state==='board') {
+      hasPressed=false;
+      const btn=document.getElementById('buz-btn');
+      btn.className='buzzer-btn'; btn.textContent='ОТВЕТИТЬ';
+      document.getElementById('buz-status').textContent='Нажми первым!';
+      document.getElementById('buz-status').className='buz-status';
+      show('waiting-screen');
+      document.getElementById('wait-ttl').textContent='Ведущий выбирает вопрос...';
+      return;
+    }
+
+    if (state==='trap') {
+      const q=g.currentQuestion;
+      const t=TRAP_INFO[q&&q.trapType]||TRAP_INFO['bag'];
+      document.getElementById('t-em').textContent=t.emoji;
+      document.getElementById('t-nm').textContent=t.name;
+      document.getElementById('t-dc').textContent=t.desc;
+      show('trap-screen'); return;
+    }
+
+    if (state==='question') {
+      const q=g.currentQuestion;
+      if (!q) return;
+      // Reset buzzer if new question
+      const qKey=`${q.cat}-${q.points}`;
+      if (qKey!==lastQuestionKey) { hasPressed=false; lastQuestionKey=qKey; }
+      document.getElementById('q-cat').textContent=q.cat;
+      document.getElementById('q-pts').textContent=q.points;
+      const btn=document.getElementById('buz-btn');
+      if (g.activeBuzzer) {
+        if (!hasPressed) { btn.className='buzzer-btn'; btn.textContent='ОТВЕТИТЬ'; document.getElementById('buz-status').textContent='Нажми первым!'; document.getElementById('buz-status').className='buz-status'; }
+      } else {
+        btn.className='buzzer-btn pressed'; btn.textContent='⏳';
+        document.getElementById('buz-status').textContent='Ведущий определяет отвечающего';
+        document.getElementById('buz-status').className='buz-status late';
+      }
+      show('buzzer-screen');
+    }
+  });
+
+  onValue(ref(db,'game/buzzers'), snap => {
+    const data=snap.val();
+    if (!data) return;
+    const sorted=Object.values(data).sort((a,b)=>a.ts-b.ts);
+    const first=sorted[0];
+    const btn=document.getElementById('buz-btn');
+    const status=document.getElementById('buz-status');
+    if (first && first.name===myName) {
+      btn.className='buzzer-btn winner';
+      status.textContent='🎉 Ты первый!'; status.className='buz-status win';
+    } else if (hasPressed && first) {
+      btn.className='buzzer-btn pressed';
+      status.textContent=`Первым — ${first.name}`; status.className='buz-status late';
+    }
+  });
+}
+
+window.pressBuzzer = function() {
+  if (hasPressed) return;
+  hasPressed=true;
+  document.getElementById('buz-btn').className='buzzer-btn pressed';
+  push(ref(db,'game/buzzers'), { name:myName, ts:Date.now() });
+};
+</script>
+</body>
+</html>
