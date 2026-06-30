@@ -226,11 +226,11 @@ const QUESTIONS = [
     category: "Открытки из вайбера",
     rules: "",
     questions: [
-      { points: 100, q: "", qImg: "https://disk.yandex.ru/i/XuaWMf_Xii4Bhw", a: "", aImg: "https://disk.yandex.ru/i/1z6w_AjcqsX52Q" },
-      { points: 200, q: "", qImg: "https://disk.yandex.ru/i/sMQA6lTNp_fXJQ", a: "", aImg: "https://disk.yandex.ru/i/H1ByDXeCAv_6ig" },
-      { points: 300, q: "", qImg: "https://disk.yandex.ru/i/K8Xbcb-e3jROnQ", a: "", aImg: "https://disk.yandex.ru/i/tWGrPwummyqgOQ" },
-      { points: 400, q: "", qImg: "https://disk.yandex.ru/i/a8_kNQ7cqjxz7g", a: "", aImg: "https://disk.yandex.ru/i/fO_p3KSfOVxIMw" },
-      { points: 500, q: "", qImg: "https://disk.yandex.ru/i/yjb17SWkwLNsKw", a: "", aImg: "https://disk.yandex.ru/i/KfreGAD0B3rzwA" }
+      { points: 100, q: "", qImg: "https://i.imgur.com/roMV99f.jpeg", a: "", aImg: "https://i.imgur.com/vzflhkO.jpeg" },
+      { points: 200, q: "", qImg: "https://i.imgur.com/8wtOXX0.jpeg", a: "", aImg: "https://i.imgur.com/MvCjbQ3.jpeg" },
+      { points: 300, q: "", qImg: "https://i.imgur.com/nBrOdu3.jpeg", a: "", aImg: "https://i.imgur.com/2jDtvun.jpeg" },
+      { points: 400, q: "", qImg: "https://i.imgur.com/3gPj0cP.jpeg", a: "", aImg: "https://i.imgur.com/SdhOX36.jpeg" },
+      { points: 500, q: "", qImg: "https://i.imgur.com/jQl0zz6.png", a: "", aImg: "https://i.imgur.com/hkael3s.png" }
     ]
   },
   {
@@ -250,11 +250,11 @@ const QUESTIONS = [
     category: "Угадай по фарам",
     rules: "",
     questions: [
-      { points: 100, q: "", qImg: "https://disk.yandex.ru/i/qlbzOnoToe_2kA", a: "Porsche Cayenne первого поколения" },
-      { points: 200, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTggfeGAwh-6DWr3-8ud6Eh3-GYPTz2-SqR3H2bNWx_DJZUoY6n4lsW5KBz&s=10", a: "BMW M5 Competition" },
-      { points: 300, q: "", qImg: "https://disk.yandex.ru/i/Z7L1VaCSr6S0Lg", a: "Toyota Supra 4" },
-      { points: 400, q: "", qImg: "https://disk.yandex.ru/i/zCjMlZnDcIZS9g", a: "Volkswagen Golf Mk5" },
-      { points: 500, q: "", qImg: "https://disk.yandex.ru/i/ZErTmjjWV04xxA", a: "Audi RS 7" }
+      { points: 100, q: "", qImg: "https://i.imgur.com/5OeJNoz.png", a: "Porsche Cayenne первого поколения" },
+      { points: 200, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVMsRo0lbyG6V91Ki1E0lYttkU-9Moy2qB5FJBMcO_2Q&s=10", a: "BMW M5 Competition" },
+      { points: 300, q: "", qImg: "https://i.imgur.com/YxIqzkl.png", a: "Toyota Supra 4" },
+      { points: 400, q: "", qImg: "https://i.imgur.com/hARR2d9.png", a: "Volkswagen Golf Mk5" },
+      { points: 500, q: "", qImg: "https://i.imgur.com/Iz4a5GW.png", a: "Audi RS 7" }
     ]
   },
   {
@@ -398,19 +398,35 @@ const TRAPS = [
   { type:"luxury_tax",  emoji:"💸", name:"Налог на роскошь",  desc:"Зажрался! С тебя списывается 500 баллов." },
   { type:"bonus_gift",  emoji:"🎉", name:"Пацанский подгон",  desc:"Выбери любого игрока за столом (не себя) — ему начислится 500 баллов." }
 ];
-// ===== YANDEX DISK LINK CONVERTER =====
-const yandexCache = {};
-async function resolveYandexLink(url) {
-  if (!url || !url.includes('disk.yandex.ru')) return url;
-  if (yandexCache[url]) return yandexCache[url];
-  try {
-    const api = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(url);
-    const res = await fetch(api);
-    const data = await res.json();
-    if (data.href) { yandexCache[url] = data.href; return data.href; }
-  } catch(e) { console.warn('Yandex resolve failed', url, e); }
+// ===== IMAGE LINK CONVERTER (Yandex Disk + Imgur) =====
+const linkCache = {};
+async function resolveImageLink(url) {
+  if (!url) return url;
+  if (linkCache[url]) return linkCache[url];
+
+  // Yandex Disk share links -> resolve via API to direct download URL
+  if (url.includes('disk.yandex.ru')) {
+    try {
+      const api = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(url);
+      const res = await fetch(api);
+      const data = await res.json();
+      if (data.href) { linkCache[url] = data.href; return data.href; }
+    } catch(e) { console.warn('Yandex resolve failed', url, e); }
+    return url;
+  }
+
+  // Imgur page links (imgur.com/XXXXX, not i.imgur.com) -> convert to direct image URL
+  const imgurMatch = url.match(/^https?:\/\/(?:www\.)?imgur\.com\/([a-zA-Z0-9]+)\/?$/);
+  if (imgurMatch && imgurMatch[1] !== 'undefined') {
+    const direct = `https://i.imgur.com/${imgurMatch[1]}.jpg`;
+    linkCache[url] = direct;
+    return direct;
+  }
+
   return url;
 }
+// backwards-compat alias
+const resolveYandexLink = resolveImageLink;
 
 import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js').then(async ({initializeApp}) => {
 const { getDatabase, ref, set, get, onValue, push, update, remove } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
@@ -620,7 +636,9 @@ async function openQModal() {
   document.getElementById('m-q').textContent = currentQ.q || '(только картинка)';
   const img = document.getElementById('m-img');
   if (currentQ.qImg) {
-    img.style.display='block'; img.src = await resolveYandexLink(currentQ.qImg);
+    img.style.display='block';
+    img.onerror = () => { img.style.display='none'; notify('⚠ Картинка не загрузилась: ' + currentQ.qImg); };
+    img.src = await resolveImageLink(currentQ.qImg);
   } else img.style.display='none';
   document.getElementById('buzz-box').classList.remove('show');
   document.getElementById('ans-box').classList.remove('show');
@@ -701,7 +719,11 @@ async function revealAnswer() {
   showingAns = true;
   document.getElementById('ans-text').textContent = currentQ.a || '(см. картинку)';
   const aimg = document.getElementById('ans-img');
-  if (currentQ.aImg) { aimg.style.display='block'; aimg.src = await resolveYandexLink(currentQ.aImg); } else aimg.style.display='none';
+  if (currentQ.aImg) {
+    aimg.style.display='block';
+    aimg.onerror = () => { aimg.style.display='none'; notify('⚠ Картинка ответа не загрузилась'); };
+    aimg.src = await resolveImageLink(currentQ.aImg);
+  } else aimg.style.display='none';
   document.getElementById('ans-box').classList.add('show');
   update(ref(db,'game'), { activeBuzzer:false });
   renderActions();
