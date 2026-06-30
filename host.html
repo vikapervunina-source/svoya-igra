@@ -16,7 +16,10 @@
   .lobby-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; width: 600px; max-width: 95vw; }
   .lobby-logo { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #f5c842; letter-spacing: 3px; margin-bottom: 4px; }
   .lobby-sub { color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 32px; }
-  .link-box { background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.2); border-radius: 12px; padding: 14px 18px; margin-bottom: 28px; }
+  .link-box { background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.2); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; }
+  .qr-box { display: flex; flex-direction: column; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; margin-bottom: 28px; }
+  #qr-canvas { background: #fff; padding: 10px; border-radius: 10px; line-height: 0; }
+  .qr-hint { font-size: 12px; color: rgba(255,255,255,0.35); }
   .link-label { font-size: 11px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
   .link-url { font-size: 13px; color: #2ecc71; word-break: break-all; cursor: pointer; }
   .copy-hint { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 4px; }
@@ -135,6 +138,10 @@
       <div class="link-url" id="player-link" onclick="copyLink()">Определяется...</div>
       <div class="copy-hint">Нажми чтобы скопировать</div>
     </div>
+    <div class="qr-box" id="qr-box">
+      <div id="qr-canvas"></div>
+      <div class="qr-hint">Отсканируй камерой телефона</div>
+    </div>
     <div class="players-waiting">
       <div class="pw-header">
         <div class="pw-title">Игроки онлайн</div>
@@ -196,6 +203,7 @@
 
 <div class="notif" id="notif"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <script>
 // ===== GAME QUESTIONS DATA =====
 // ===== GAME QUESTIONS DATA =====
@@ -435,6 +443,15 @@ function setPlayerLink() {
   const url = window.location.href.replace('host.html','player.html');
   const el = document.getElementById('player-link');
   el.textContent = url; el._url = url;
+  renderQR(url);
+}
+function renderQR(url) {
+  const box = document.getElementById('qr-canvas');
+  box.innerHTML = '';
+  if (typeof QRious === 'undefined') return;
+  const canvas = document.createElement('canvas');
+  box.appendChild(canvas);
+  new QRious({ element: canvas, value: url, size: 180, background: '#fff', foreground: '#0a0a1a', level: 'M' });
 }
 setPlayerLink();
 window.copyLink = () => {
