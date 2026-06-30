@@ -12,14 +12,13 @@
 
   .logo { font-size:40px; font-weight:800; color:#f5c842; letter-spacing:2px; text-align:center; margin-bottom:6px; }
   .logo-sub { font-size:14px; color:rgba(255,255,255,0.35); text-align:center; margin-bottom:36px; }
-  .inp { width:100%; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); border-radius:14px; padding:16px 18px; color:#fff; font-size:18px; text-align:center; outline:none; margin-bottom:14px; transition:border-color 0.2s; }
+  .inp { width:100%; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); border-radius:14px; padding:16px 18px; color:#fff; font-size:18px; text-align:center; outline:none; margin-bottom:14px; }
   .inp:focus { border-color:#f5c842; }
   .inp::placeholder { color:rgba(255,255,255,0.22); }
   .btn-join { width:100%; padding:18px; background:#f5c842; color:#0a0a1a; border:none; border-radius:14px; font-size:17px; font-weight:700; cursor:pointer; }
   .btn-join:active { opacity:0.88; transform:scale(0.97); }
   .err { font-size:13px; color:#ff6b6b; text-align:center; margin-top:8px; min-height:20px; }
 
-  /* LOBBY */
   .badge { background:rgba(245,200,66,0.12); border:1.5px solid rgba(245,200,66,0.3); border-radius:50px; padding:10px 24px; font-size:20px; font-weight:600; color:#f5c842; margin-bottom:24px; }
   .lobby-ttl { font-size:20px; font-weight:700; margin-bottom:8px; text-align:center; }
   .lobby-sub { font-size:14px; color:rgba(255,255,255,0.4); text-align:center; margin-bottom:32px; }
@@ -29,7 +28,6 @@
   .online-item:last-child { border-bottom:none; }
   .odot { width:7px; height:7px; border-radius:50%; background:#2ecc71; flex-shrink:0; }
 
-  /* WAITING */
   .wait-icon { font-size:60px; margin-bottom:18px; animation:float 3s ease-in-out infinite; }
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
   .wait-ttl { font-size:20px; font-weight:700; text-align:center; margin-bottom:8px; }
@@ -39,20 +37,23 @@
   .my-pts-val { font-size:38px; font-weight:800; }
   .my-pts-val.neg { color:#ff6b6b; }
 
-  /* BUZZER */
   .q-lbl { font-size:12px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; text-align:center; }
   .q-cat { font-size:15px; color:#f5c842; font-weight:600; text-align:center; margin-bottom:6px; }
-  .q-pts { font-size:52px; font-weight:800; text-align:center; margin-bottom:36px; line-height:1; }
-  .buzzer-btn { width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff4444,#cc0000); border:none; box-shadow:0 0 0 8px rgba(200,0,0,0.18),0 8px 36px rgba(200,0,0,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.35); transition:transform 0.1s,box-shadow 0.1s; text-align:center; line-height:1.2; padding:16px; }
-  .buzzer-btn:active { transform:scale(0.92); box-shadow:0 0 0 4px rgba(200,0,0,0.15),0 4px 18px rgba(200,0,0,0.25); }
+  .q-pts { font-size:52px; font-weight:800; text-align:center; margin-bottom:24px; line-height:1; }
+  .attempts-strip { display:flex; gap:6px; margin-bottom:24px; }
+  .attempt-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.15); }
+  .attempt-dot.miss { background:#ff6b6b; }
+  .buzzer-btn { width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#ff4444,#cc0000); border:none; box-shadow:0 0 0 8px rgba(200,0,0,0.18),0 8px 36px rgba(200,0,0,0.35); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.35); transition:transform 0.1s,box-shadow 0.1s; text-align:center; line-height:1.2; padding:16px; }
+  .buzzer-btn:active { transform:scale(0.92); }
   .buzzer-btn.pressed { background:radial-gradient(circle at 35% 35%,#444,#1a1a1a); box-shadow:0 0 0 6px rgba(100,100,100,0.12),0 4px 16px rgba(0,0,0,0.25); cursor:default; }
-  .buzzer-btn.winner { background:radial-gradient(circle at 35% 35%,#f5c842,#d4a017); box-shadow:0 0 0 8px rgba(245,200,66,0.22),0 8px 36px rgba(245,200,66,0.35); animation:wpulse 0.55s ease-in-out; }
-  @keyframes wpulse { 0%,100%{transform:scale(1)} 35%{transform:scale(1.09)} 65%{transform:scale(0.96)} }
+  .buzzer-btn.winner { background:radial-gradient(circle at 35% 35%,#f5c842,#d4a017); box-shadow:0 0 0 8px rgba(245,200,66,0.22),0 8px 36px rgba(245,200,66,0.35); }
+  .buzzer-btn.wrong { background:radial-gradient(circle at 35% 35%,#ff6b6b,#a02020); animation:shake 0.4s ease; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
   .buz-status { font-size:15px; color:rgba(255,255,255,0.45); text-align:center; margin-top:18px; min-height:22px; }
   .buz-status.win { color:#f5c842; font-weight:600; }
   .buz-status.late { color:rgba(255,255,255,0.28); }
+  .buz-status.wrong { color:#ff6b6b; font-weight:600; }
 
-  /* TRAP */
   .trap-em { font-size:80px; text-align:center; margin-bottom:14px; }
   .trap-nm { font-size:26px; font-weight:800; color:#f5c842; text-align:center; margin-bottom:10px; }
   .trap-dc { font-size:16px; color:rgba(255,255,255,0.55); text-align:center; line-height:1.6; }
@@ -72,10 +73,7 @@
   <div class="lobby-ttl">Ты в игре!</div>
   <div class="lobby-sub">Жди пока ведущий начнёт</div>
   <div class="badge" id="my-badge"></div>
-  <div class="online-box">
-    <div class="online-lbl">Игроки онлайн</div>
-    <div id="online-list"></div>
-  </div>
+  <div class="online-box"><div class="online-lbl">Игроки онлайн</div><div id="online-list"></div></div>
 </div>
 
 <div id="waiting-screen" class="screen">
@@ -89,9 +87,12 @@
   <div class="q-lbl">Вопрос</div>
   <div class="q-cat" id="q-cat"></div>
   <div class="q-pts" id="q-pts"></div>
+  <div class="attempts-strip" id="attempts-strip">
+    <div class="attempt-dot"></div><div class="attempt-dot"></div><div class="attempt-dot"></div>
+  </div>
   <button class="buzzer-btn" id="buz-btn" onclick="pressBuzzer()">ОТВЕТИТЬ</button>
   <div class="buz-status" id="buz-status">Нажми первым!</div>
-  <div class="my-pts" style="margin-top:28px;"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="b-pts">0</div></div>
+  <div class="my-pts" style="margin-top:24px;"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="b-pts">0</div></div>
 </div>
 
 <div id="trap-screen" class="screen">
@@ -119,18 +120,22 @@ const app = initializeApp(FB);
 const db = getDatabase(app);
 
 const TRAP_INFO = {
-  transfer:{emoji:'🔀',name:'Передай вопрос',desc:'Ведущий передаёт вопрос другому игроку.'},
-  auction: {emoji:'💰',name:'Аукцион',desc:'Делайте ставки! Ведущий определяет победителя.'},
-  bag:     {emoji:'🎁',name:'Кот в мешке',desc:'Вопрос ушёл случайному игроку!'},
-  minus:   {emoji:'💀',name:'Чёрная метка',desc:'Кому-то спишут −1000 баллов.'},
-  gift:    {emoji:'🌟',name:'Невиданная щедрость',desc:'Кому-то начислят +1500 баллов!'}
+  compliment:{emoji:'💋',name:'Подлижи ведущему',desc:'5 комплиментов ведущей без запинки → +1000 баллов.'},
+  luck:      {emoji:'🍀',name:'Удачная лотка',desc:'Просто получаешь 1000 баллов!'},
+  warmup:    {emoji:'🤝',name:'Подогреть бедолагу',desc:'Отдаёшь 1000 баллов отстающему игроку.'},
+  flip:      {emoji:'🔄',name:'Минус на плюс',desc:'У всех знак очков меняется на противоположный!'},
+  underdog:  {emoji:'🆘',name:'Вопрос уходит самому отстающему',desc:'Отвечает игрок с наименьшим счётом.'},
+  luxury_tax:{emoji:'💸',name:'Налог на роскошь',desc:'С тебя списывается 500 баллов.'},
+  bonus_gift:{emoji:'🎉',name:'Пацанский подгон',desc:'Кому-то начислят 500 баллов!'}
 };
 
 let myName='', hasPressed=false, lastQuestionKey='';
 
 function show(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-function setScore(v) {
-  ['w-pts','b-pts','t-pts'].forEach(id=>{ const el=document.getElementById(id); if(el){el.textContent=v;el.className='my-pts-val'+(v<0?' neg':'');} });
+function setScore(v) { ['w-pts','b-pts','t-pts'].forEach(id=>{ const el=document.getElementById(id); if(el){el.textContent=v;el.className='my-pts-val'+(v<0?' neg':'');} }); }
+function setAttempts(strip, n) {
+  const dots = strip.querySelectorAll('.attempt-dot');
+  dots.forEach((d,i) => d.className = 'attempt-dot' + (i<n?' miss':''));
 }
 
 window.joinGame = function() {
@@ -150,25 +155,12 @@ function listenGame() {
   onValue(ref(db,'game'), snap => {
     const g = snap.val();
     if (!g) return;
-
-    // Score
     if (g.scores && g.scores[myName] !== undefined) setScore(g.scores[myName]);
-
-    // Online list
-    if (g.connected) {
-      document.getElementById('online-list').innerHTML =
-        Object.values(g.connected).map(p=>`<div class="online-item"><div class="odot"></div>${p.name}</div>`).join('');
-    }
+    if (g.connected) document.getElementById('online-list').innerHTML = Object.values(g.connected).map(p=>`<div class="online-item"><div class="odot"></div>${p.name}</div>`).join('');
 
     const state = g.state;
-
     if (state==='lobby' || !state) { show('lobby-screen'); return; }
-
-    if (state==='end') {
-      show('waiting-screen');
-      document.getElementById('wait-ttl').textContent='🏆 Игра окончена!';
-      return;
-    }
+    if (state==='end') { show('waiting-screen'); document.getElementById('wait-ttl').textContent='🏆 Игра окончена!'; return; }
 
     if (state==='board') {
       hasPressed=false;
@@ -183,7 +175,7 @@ function listenGame() {
 
     if (state==='trap') {
       const q=g.currentQuestion;
-      const t=TRAP_INFO[q&&q.trapType]||TRAP_INFO['bag'];
+      const t=TRAP_INFO[q&&q.trapType]||TRAP_INFO['luck'];
       document.getElementById('t-em').textContent=t.emoji;
       document.getElementById('t-nm').textContent=t.name;
       document.getElementById('t-dc').textContent=t.desc;
@@ -193,36 +185,29 @@ function listenGame() {
     if (state==='question') {
       const q=g.currentQuestion;
       if (!q) return;
-      // Reset buzzer if new question
       const qKey=`${q.cat}-${q.points}`;
-      if (qKey!==lastQuestionKey) { hasPressed=false; lastQuestionKey=qKey; }
+      const strip = document.getElementById('attempts-strip');
+      if (qKey!==lastQuestionKey) { hasPressed=false; lastQuestionKey=qKey; setAttempts(strip,0); }
+      else { setAttempts(strip, g.missCount||0); }
+
       document.getElementById('q-cat').textContent=q.cat;
       document.getElementById('q-pts').textContent=q.points;
       const btn=document.getElementById('buz-btn');
-      if (g.activeBuzzer) {
-        if (!hasPressed) { btn.className='buzzer-btn'; btn.textContent='ОТВЕТИТЬ'; document.getElementById('buz-status').textContent='Нажми первым!'; document.getElementById('buz-status').className='buz-status'; }
+      const status=document.getElementById('buz-status');
+      const myAttempted = (g.attemptedPlayers||[]).includes(myName);
+
+      if (g.activeAnswerer === myName) {
+        btn.className='buzzer-btn winner'; status.textContent='🎉 Отвечай!'; status.className='buz-status win';
+      } else if (g.activeAnswerer) {
+        btn.className='buzzer-btn pressed'; status.textContent=`Отвечает ${g.activeAnswerer}`; status.className='buz-status late';
+      } else if (myAttempted) {
+        btn.className='buzzer-btn pressed'; status.textContent='Ты уже отвечал на этот вопрос'; status.className='buz-status late';
+      } else if (g.activeBuzzer) {
+        if (!hasPressed) { btn.className='buzzer-btn'; btn.textContent='ОТВЕТИТЬ'; status.textContent='Нажми первым!'; status.className='buz-status'; }
       } else {
-        btn.className='buzzer-btn pressed'; btn.textContent='⏳';
-        document.getElementById('buz-status').textContent='Ведущий определяет отвечающего';
-        document.getElementById('buz-status').className='buz-status late';
+        btn.className='buzzer-btn pressed'; btn.textContent='⏳'; status.textContent='Ответ будет показан'; status.className='buz-status late';
       }
       show('buzzer-screen');
-    }
-  });
-
-  onValue(ref(db,'game/buzzers'), snap => {
-    const data=snap.val();
-    if (!data) return;
-    const sorted=Object.values(data).sort((a,b)=>a.ts-b.ts);
-    const first=sorted[0];
-    const btn=document.getElementById('buz-btn');
-    const status=document.getElementById('buz-status');
-    if (first && first.name===myName) {
-      btn.className='buzzer-btn winner';
-      status.textContent='🎉 Ты первый!'; status.className='buz-status win';
-    } else if (hasPressed && first) {
-      btn.className='buzzer-btn pressed';
-      status.textContent=`Первым — ${first.name}`; status.className='buz-status late';
     }
   });
 }
