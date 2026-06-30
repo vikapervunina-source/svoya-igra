@@ -12,7 +12,7 @@
   .screen.active { display: flex; flex-direction: column; }
 
   /* LOBBY */
-  #lobby-screen { align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 0%, #1a0a3a 0%, #0a0a1a 70%); }
+  #lobby-screen { align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 0%, #1a0a3a 0%, #0a0a1a 70%); padding: 20px; }
   .lobby-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; width: 600px; max-width: 95vw; }
   .lobby-logo { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #f5c842; letter-spacing: 3px; margin-bottom: 4px; }
   .lobby-sub { color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 32px; }
@@ -25,61 +25,72 @@
   .pw-title { font-size: 15px; font-weight: 600; }
   .pw-count { font-size: 13px; color: rgba(255,255,255,0.4); }
   .player-chips { display: flex; flex-wrap: wrap; gap: 10px; min-height: 48px; }
-  .player-chip { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 16px; font-size: 14px; animation: chipIn 0.3s ease; }
-  @keyframes chipIn { from { opacity:0; transform:scale(0.8); } to { opacity:1; transform:scale(1); } }
+  .player-chip { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 16px; font-size: 14px; }
   .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ecc71; flex-shrink: 0; }
-  .chip-remove { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.5); font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .chip-remove { width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.5); font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   .chip-remove:hover { background: rgba(231,76,60,0.3); color: #ff6b6b; }
   .empty-hint { font-size: 14px; color: rgba(255,255,255,0.2); padding: 12px 0; }
-  .btn-start { width: 100%; padding: 16px; background: #f5c842; color: #0a0a1a; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; transition: opacity 0.2s, transform 0.1s; }
+  .btn-start { width: 100%; padding: 16px; background: #f5c842; color: #0a0a1a; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; }
   .btn-start:hover:not(:disabled) { opacity: 0.9; }
-  .btn-start:active:not(:disabled) { transform: scale(0.98); }
   .btn-start:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* GAME */
   #game-screen { background: #0a0a1a; }
-  .game-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
-  .game-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: #f5c842; letter-spacing: 2px; }
+  .game-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0; }
+  .game-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #f5c842; letter-spacing: 2px; }
+  .round-badge { font-size: 12px; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); padding: 4px 12px; border-radius: 20px; }
   .status-label { font-size: 12px; color: rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; }
   .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff6b6b; }
   .status-dot.on { background: #2ecc71; }
 
-  .scores-bar { display: flex; gap: 10px; padding: 12px 24px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; flex-wrap: wrap; }
-  .score-card { flex: 1; min-width: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 12px; position: relative; transition: border-color 0.3s; }
-  .score-name { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .score-pts { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: #fff; line-height: 1; }
+  .scores-bar { display: flex; gap: 8px; padding: 10px 20px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; flex-wrap: wrap; }
+  .score-card { flex: 1; min-width: 90px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 10px; position: relative; transition: border-color 0.3s; }
+  .score-name { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .score-pts { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #fff; line-height: 1.2; }
   .score-pts.neg { color: #ff6b6b; }
-  .buz-dot { position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #2ecc71; opacity: 0; transition: opacity 0.3s; }
-  .buz-dot.lit { opacity: 1; animation: bpulse 0.4s ease; }
-  @keyframes bpulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.8)} }
+  .buz-dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%; background: #2ecc71; opacity: 0; }
+  .buz-dot.lit { opacity: 1; }
+  .strike-dot { position: absolute; top: 6px; left: 6px; width: 7px; height: 7px; border-radius: 50%; background: #ff6b6b; opacity: 0; }
+  .strike-dot.lit { opacity: 1; }
 
-  .board-wrap { flex: 1; padding: 16px 24px; overflow: auto; }
-  .board { display: grid; gap: 8px; }
-  .cat-hdr { background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.2); border-radius: 10px; padding: 10px 14px; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1.5px; color: #f5c842; text-align: center; }
-  .q-cell { aspect-ratio: 1.6; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #f5c842; cursor: pointer; transition: background 0.2s, transform 0.1s; position: relative; }
-  .q-cell:hover:not(.used) { background: rgba(245,200,66,0.15); border-color: rgba(245,200,66,0.4); transform: scale(1.03); }
+  /* HORIZONTAL BOARD: categories left, points right */
+  .round-tabs { display: flex; gap: 8px; padding: 10px 20px 0; flex-shrink: 0; }
+  .round-tab { padding: 8px 16px; border-radius: 10px 10px 0 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-bottom: none; font-size: 13px; color: rgba(255,255,255,0.4); cursor: pointer; }
+  .round-tab.active { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.25); color: #f5c842; font-weight: 600; }
+
+  .board-wrap { flex: 1; padding: 16px 20px; overflow: auto; }
+  .board { display: flex; flex-direction: column; gap: 8px; }
+  .board-row { display: grid; grid-template-columns: 180px repeat(5, 1fr); gap: 8px; align-items: stretch; }
+  .cat-label { background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.2); border-radius: 10px; padding: 10px 14px; display: flex; align-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; color: #f5c842; line-height: 1.15; }
+  .q-cell { min-height: 56px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #f5c842; cursor: pointer; transition: background 0.2s, transform 0.1s; position: relative; }
+  .q-cell:hover:not(.used) { background: rgba(245,200,66,0.15); border-color: rgba(245,200,66,0.4); transform: scale(1.02); }
   .q-cell.used { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.04); color: rgba(255,255,255,0.08); cursor: default; }
   .q-cell.used:hover { transform: none; }
-  .trap-corner { position: absolute; top: 4px; right: 6px; font-size: 10px; opacity: 0.35; }
+  .q-cell.empty { visibility: hidden; }
+  .trap-corner { position: absolute; top: 4px; right: 6px; font-size: 9px; opacity: 0.3; }
 
   /* MODALS */
-  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: center; justify-content: center; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: center; justify-content: center; padding: 16px; }
   .overlay.open { display: flex; }
-  .modal { background: #12122a; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; width: 680px; max-width: 95vw; max-height: 92vh; overflow-y: auto; }
-  .modal-pts { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #f5c842; margin-bottom: 6px; letter-spacing: 1px; }
-  .modal-q { font-size: 21px; line-height: 1.5; color: #fff; margin-bottom: 18px; }
-  .modal-img { width: 100%; max-height: 260px; object-fit: contain; border-radius: 10px; margin-bottom: 16px; background: rgba(0,0,0,0.3); }
-  .buzz-box { background: rgba(245,200,66,0.08); border: 1px solid rgba(245,200,66,0.25); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; display: none; }
+  .modal { background: #12122a; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 28px; width: 700px; max-width: 100%; max-height: 92vh; overflow-y: auto; }
+  .modal-pts { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: #f5c842; margin-bottom: 6px; letter-spacing: 1px; }
+  .modal-rules { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 14px; font-style: italic; }
+  .modal-q { font-size: 20px; line-height: 1.5; color: #fff; margin-bottom: 16px; }
+  .modal-img { width: 100%; max-height: 280px; object-fit: contain; border-radius: 10px; margin-bottom: 16px; background: rgba(0,0,0,0.3); }
+  .attempts-row { display: flex; gap: 6px; margin-bottom: 14px; }
+  .attempt-pip { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .attempt-pip.miss { background: rgba(231,76,60,0.2); border-color: rgba(231,76,60,0.4); }
+  .buzz-box { background: rgba(245,200,66,0.08); border: 1px solid rgba(245,200,66,0.25); border-radius: 12px; padding: 12px 16px; margin-bottom: 14px; display: none; }
   .buzz-box.show { display: block; }
   .buzz-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
   .buzz-name { font-size: 22px; font-weight: 700; color: #f5c842; }
-  .buzz-next { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 6px; }
-  .ans-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; display: none; }
+  .ans-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 16px; margin-bottom: 18px; display: none; }
   .ans-box.show { display: block; }
   .ans-label { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-  .ans-text { font-size: 18px; color: #2ecc71; font-weight: 600; }
+  .ans-text { font-size: 17px; color: #2ecc71; font-weight: 600; margin-bottom: 8px; }
+  .ans-img { width: 100%; max-height: 220px; object-fit: contain; border-radius: 10px; }
   .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07); color: #fff; font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+  .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.07); color: #fff; font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 500; cursor: pointer; }
   .btn:hover { background: rgba(255,255,255,0.13); }
   .btn.g { background: rgba(46,204,113,0.15); border-color: rgba(46,204,113,0.35); color: #2ecc71; }
   .btn.g:hover { background: rgba(46,204,113,0.25); }
@@ -89,15 +100,10 @@
   .btn.y:hover { background: rgba(245,200,66,0.22); }
 
   /* TRAP MODAL */
-  .trap-modal { background: #130a20; border: 1px solid rgba(255,107,107,0.25); border-radius: 20px; padding: 36px; width: 520px; max-width: 95vw; text-align: center; }
-  .trap-em { font-size: 72px; margin-bottom: 14px; }
-  .trap-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #ff8c69; letter-spacing: 2px; margin-bottom: 8px; }
-  .trap-desc { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 24px; line-height: 1.5; }
-  .trap-sel { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 14px; color: #fff; font-size: 15px; font-family: 'Inter',sans-serif; outline: none; margin-bottom: 16px; cursor: pointer; }
-  .auction-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-  .auction-row { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px 14px; }
-  .auction-row-name { flex: 1; font-size: 14px; text-align: left; }
-  .auction-row input { width: 90px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 7px 10px; color: #fff; font-size: 14px; font-family: 'Inter',sans-serif; outline: none; text-align: right; }
+  .trap-modal { background: #130a20; border: 1px solid rgba(255,107,107,0.25); border-radius: 20px; padding: 32px; width: 520px; max-width: 100%; text-align: center; }
+  .trap-em { font-size: 64px; margin-bottom: 12px; }
+  .trap-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #ff8c69; letter-spacing: 2px; margin-bottom: 8px; }
+  .trap-desc { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 22px; line-height: 1.5; }
   .trap-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 
   /* END */
@@ -112,7 +118,6 @@
   .end-pname { flex: 1; font-size: 16px; font-weight: 500; text-align: left; }
   .end-pts { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #f5c842; }
   .btn-restart { margin-top: 28px; padding: 14px 32px; background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.3); border-radius: 12px; color: #f5c842; font-size: 15px; font-weight: 600; font-family: 'Inter',sans-serif; cursor: pointer; }
-  .btn-restart:hover { background: rgba(245,200,66,0.22); }
 
   .notif { position: fixed; bottom: 20px; right: 20px; background: #1a1a2e; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 14px 18px; font-size: 14px; z-index: 200; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; max-width: 280px; }
   .notif.show { opacity: 1; transform: translateY(0); }
@@ -120,18 +125,15 @@
 </head>
 <body>
 
-<!-- LOBBY -->
 <div id="lobby-screen" class="screen active">
   <div class="lobby-box">
     <div class="lobby-logo">Своя Игра</div>
     <div class="lobby-sub">Экран ведущего</div>
-
     <div class="link-box">
       <div class="link-label">Ссылка для игроков</div>
       <div class="link-url" id="player-link" onclick="copyLink()">Определяется...</div>
       <div class="copy-hint">Нажми чтобы скопировать</div>
     </div>
-
     <div class="players-waiting">
       <div class="pw-header">
         <div class="pw-title">Игроки онлайн</div>
@@ -141,27 +143,23 @@
         <div class="empty-hint">Никого нет — жди игроков по ссылке выше</div>
       </div>
     </div>
-
-    <button class="btn-start" id="btn-start" onclick="startGame()" disabled>
-      Начать игру (нужно минимум 2 игрока)
-    </button>
+    <button class="btn-start" id="btn-start" onclick="startGame()" disabled>Начать игру (нужно минимум 2 игрока)</button>
   </div>
 </div>
 
-<!-- GAME -->
 <div id="game-screen" class="screen">
   <div class="game-header">
-    <div class="game-title">Своя Игра</div>
-    <div class="status-label">
-      <span class="status-dot" id="sdot"></span>
-      <span id="stxt">Подключение...</span>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="game-title">Своя Игра</div>
+      <div class="round-badge" id="round-badge">Раунд 1</div>
     </div>
+    <div class="status-label"><span class="status-dot" id="sdot"></span><span id="stxt">Подключение...</span></div>
   </div>
   <div class="scores-bar" id="scores-bar"></div>
+  <div class="round-tabs" id="round-tabs"></div>
   <div class="board-wrap"><div class="board" id="board"></div></div>
 </div>
 
-<!-- END -->
 <div id="end-screen" class="screen">
   <div class="end-box">
     <div class="end-trophy">🏆</div>
@@ -171,111 +169,271 @@
   </div>
 </div>
 
-<!-- Q MODAL -->
 <div class="overlay" id="q-overlay">
   <div class="modal">
     <div class="modal-pts" id="m-pts"></div>
+    <div class="modal-rules" id="m-rules"></div>
     <div class="modal-q" id="m-q"></div>
     <img class="modal-img" id="m-img" style="display:none" alt="">
+    <div class="attempts-row" id="attempts-row"></div>
     <div class="buzz-box" id="buzz-box">
-      <div class="buzz-label">Нажал первым</div>
+      <div class="buzz-label">Сейчас отвечает</div>
       <div class="buzz-name" id="buzz-name">—</div>
-      <div class="buzz-next" id="buzz-next"></div>
     </div>
     <div class="ans-box" id="ans-box">
       <div class="ans-label">Ответ</div>
       <div class="ans-text" id="ans-text"></div>
+      <img class="ans-img" id="ans-img" style="display:none" alt="">
     </div>
     <div class="actions" id="m-actions"></div>
   </div>
 </div>
 
-<!-- TRAP MODAL -->
 <div class="overlay" id="trap-overlay">
   <div class="trap-modal" id="trap-content"></div>
 </div>
 
 <div class="notif" id="notif"></div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, set, get, onValue, push, update, remove, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+<script>
+// ===== GAME QUESTIONS DATA =====
+// ===== GAME QUESTIONS DATA =====
+const QUESTIONS = [
+  // ===== ROUND 1 (5 categories) =====
+  {
+    round: 1,
+    category: "Напойка",
+    rules: "Напой это",
+    questions: [
+      { points: 100, q: "Заставку из Дома 2", a: "" },
+      { points: 200, q: "Черный бумер", a: "" },
+      { points: 300, q: "Тему из «Гарри Поттера»", a: "" },
+      { points: 400, q: "Напой песню из этого мультика", qImg: "https://cs17.pikabu.ru/s/2026/05/19/22/yzouxk2o.jpg", a: "" },
+      { points: 500, q: "Напой любую рекламу", a: "" }
+    ]
+  },
+  {
+    round: 1,
+    category: "Открытки из вайбера",
+    rules: "",
+    questions: [
+      { points: 100, q: "", qImg: "https://disk.yandex.ru/i/XuaWMf_Xii4Bhw", a: "", aImg: "https://disk.yandex.ru/i/1z6w_AjcqsX52Q" },
+      { points: 200, q: "", qImg: "https://disk.yandex.ru/i/sMQA6lTNp_fXJQ", a: "", aImg: "https://disk.yandex.ru/i/H1ByDXeCAv_6ig" },
+      { points: 300, q: "", qImg: "https://disk.yandex.ru/i/K8Xbcb-e3jROnQ", a: "", aImg: "https://disk.yandex.ru/i/tWGrPwummyqgOQ" },
+      { points: 400, q: "", qImg: "https://disk.yandex.ru/i/a8_kNQ7cqjxz7g", a: "", aImg: "https://disk.yandex.ru/i/fO_p3KSfOVxIMw" },
+      { points: 500, q: "", qImg: "https://disk.yandex.ru/i/yjb17SWkwLNsKw", a: "", aImg: "https://disk.yandex.ru/i/KfreGAD0B3rzwA" }
+    ]
+  },
+  {
+    round: 1,
+    category: "Моя семья",
+    rules: "",
+    questions: [
+      { points: 100, q: "Что за член семьи?", qImg: "https://n1s1.hsmedia.ru/63/43/00/634300eb49856d07233da07d9c8567d8/728x972_1_e0f20dc5e3abae2b6662b618b2f5e2d1@1133x1512_0xE3MRrLZJ_7973675677642762217.jpg.webp", a: "Брат" },
+      { points: 200, q: "Что за член семьи?", qImg: "https://pioneer-service.ru/wp-content/uploads/2022/09/%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-1.jpg", a: "Сводная сестра" },
+      { points: 300, q: "Что за член семьи?", qImg: "https://www.architime.ru/specarch/minoru_yamasaki/2.jpg", a: "Близнецы" },
+      { points: 400, q: "Что он хочет вам сказать", qImg: "https://kinoreporter.ru/wp-content/uploads/2020/01/00-7.jpeg", a: "Семья превыше всего" },
+      { points: 500, q: "Что за член семьи?", qImg: "https://i.pinimg.com/originals/d7/d1/a5/d7d1a59c15093527a3a4bd971d5fe636.jpg", a: "Крестный" }
+    ]
+  },
+  {
+    round: 1,
+    category: "Угадай по фарам",
+    rules: "",
+    questions: [
+      { points: 100, q: "", qImg: "https://disk.yandex.ru/i/qlbzOnoToe_2kA", a: "Porsche Cayenne первого поколения" },
+      { points: 200, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTggfeGAwh-6DWr3-8ud6Eh3-GYPTz2-SqR3H2bNWx_DJZUoY6n4lsW5KBz&s=10", a: "BMW M5 Competition" },
+      { points: 300, q: "", qImg: "https://disk.yandex.ru/i/Z7L1VaCSr6S0Lg", a: "Toyota Supra 4" },
+      { points: 400, q: "", qImg: "https://disk.yandex.ru/i/zCjMlZnDcIZS9g", a: "Volkswagen Golf Mk5" },
+      { points: 500, q: "", qImg: "https://disk.yandex.ru/i/ZErTmjjWV04xxA", a: "Audi RS 7" }
+    ]
+  },
+  {
+    round: 1,
+    category: "ПиДиДи",
+    rules: "Вопросы по ПДД",
+    questions: [
+      { points: 100, q: "Представь ситуацию: на загородной трассе в левом ряду едет машина со скоростью 40 км/ч. Разрешено ли по ПДД моргать ему дальним светом фар, чтобы он уступил дорогу?", a: "Да, разрешено (ПДД разрешает использовать дальний свет для предупреждения об обгоне как в светлое, так и в темное время суток)" },
+      { points: 200, q: "Разрешает ли этот знак обогнать тихоходное транспортное средство (например, трактор, у которого сзади установлен специальный знак-треугольник)?", qImg: "https://rusdorznak.ru/Uploads/Catalog/dorozhnye/zapreshhayushhie/3.20.png", a: "Да, разрешает (В зоне действия знака «Обгон запрещен» разрешается обгонять тихоходные ТС, гужевые повозки, велосипеды, мопеды и двухколесные мотоциклы без бокового прицепа)" },
+      { points: 300, q: "Представьте, вы едете в зоне действия знака «Ограничение скорости 60». Какая может быть максимальная скорость, чтобы гарантировано не пришел штраф?", a: "79 км/ч" },
+      { points: 400, q: "Ты едешь по трассе и догоняешь грузовик, у которого на заднем борту горит включенный левый поворотник, хотя никаких поворотов и перекрестков впереди нет. Что на неформальном языке дальнобойщиков означает этот сигнал?", a: "«Не обгоняй, впереди встречка!» (Продажники и заводчане сдадут этот тест за секунду, а для айтишников без опыта трассы это будет крутой факт)" },
+      { points: 500, q: "Ты припарковал(а) машину в зоне №102 в Перми. Сколько стоит один час стоянки в этой зоне?", a: "40 рублей в час (В остальных зонах типа 101 или плоскостных — по 30 рублей)" }
+    ]
+  },
+
+  // ===== ROUND 2 (4 categories) =====
+  {
+    round: 2,
+    category: "Осторожно, суета!",
+    rules: "Необходимо верно назвать загаданную машину",
+    questions: [
+      { points: 200, q: "Этот японский седан по заверению одного исполнителя «наказывает плавно»", a: "Toyota Camry 3.5" },
+      { points: 400, q: "После покупки какого автомобиля единственная оставшаяся задача — «делать деньги, блять, вот так»?", a: "Cadillac" },
+      { points: 600, q: "Этот цвет машины доказал, что овощ может возглавить музыкальные чарты", a: "Баклажан (принимается также Лада Седан)" },
+      { points: 800, q: "MACAN утверждает, что эта машина превращает обычную дорогу в мобильную игру", a: "BMW M5" },
+      { points: 1000, q: "По версии Егора Крида, какой автомобиль способен заменить психотерапию?", a: "Lamborghini Urus" }
+    ]
+  },
+  {
+    round: 2,
+    category: "ТОП 5",
+    rules: "",
+    questions: [
+      { points: 200, q: "Пять популярных машин для такси", a: "" },
+      { points: 400, q: "Пять популярных треков этого года", a: "" },
+      { points: 600, q: "Пять популярных Никит", a: "" },
+      { points: 800, q: "Пять отмазок причин, почему «я не приеду»", a: "" },
+      { points: 1000, q: "Пять слов как нишево назвать мужа/жену/девушку/парня", a: "" }
+    ]
+  },
+  {
+    round: 2,
+    category: "Елены",
+    rules: "",
+    questions: [
+      { points: 200, q: "Соседка семьи Букиных", a: "Лена Полено" },
+      { points: 400, q: "Учила за деньги загадывать желания, но сама не загадала", a: "Блиновская" },
+      { points: 600, q: "Из-за ее похищения Парисом началась Троянская война", a: "Елена Прекрасная (Троянская)" },
+      { points: 800, q: "Желаю чтобы все были здоровы", a: "Елена Ваенга" },
+      { points: 1000, q: "Она не слово — вылетит, не поймаешь", a: "Елена Воробей" }
+    ]
+  },
+  {
+    round: 2,
+    category: "Как две капли",
+    rules: "Узнай известную персону",
+    questions: [
+      { points: 200, q: "", qImg: "https://4tololo.ru/sites/default/files/images/20151210151154.jpg?itok=7j3LdatN", a: "Тоби Магуайр", aImg: "https://4tololo.ru/sites/default/files/images/20151210151156.jpg?itok=WX1BkTHH" },
+      { points: 400, q: "", qImg: "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_66a39c4aba5e8b1a466cb6d0_66a39d72d650e65cc3d5c227/scale_1200", a: "Брук Шилдс", aImg: "https://images.postnews.ru/unsafe/rs:auto:1000:1000/gravity:ce/q:100/czM6Ly9wb3N0bmV3cy1uZXctcHJvZC82YWYwY2MwYS1jZGExLTRkZGUtODkwZS02ODRhYTVjZWFiZjAuanBlZw==" },
+      { points: 600, q: "", qImg: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRbvqIfYrPwUJVnzPMkT5STKoK1p-pPGaj2xDqlYn4cHkX_hGD3", a: "Том Харди", aImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO8jXlaaWE9Xz8LLyoXE2A6AVwlTXVTJDmvoxuexbqxQ&s=10" },
+      { points: 800, q: "", qImg: "https://4tololo.ru/sites/default/files/images/20140212000711.jpg?itok=8-T29iob", a: "Мистер Уайт", aImg: "https://4tololo.ru/sites/default/files/images/20140212005739.jpg?itok=8QisbSG5" },
+      { points: 1000, q: "", qImg: "https://cdn.nur.kz/images/1200x675/996cfa89a9aebf9a.jpeg?version=1", a: "Киану Ривз", aImg: "https://images.thevoicemag.ru/upload/img_cache/ba8/ba8fa96b0be0177d54ad4ea0c1ae9b34_cropped_666x833.jpg" }
+    ]
+  },
+
+  // ===== ROUND 3 (5 categories) =====
+  {
+    round: 3,
+    category: "Пацанский цитатник",
+    rules: "Ведущий зачитывает цитату, а игроки должны угадать, кто это сказал — великий философ или это статус из пацанского паблика.",
+    questions: [
+      { points: 200, q: "Неважно, сколько у тебя друзей. Важно, кто из них поможет тебе, когда ты будешь на дне", a: "Пацанский паблик (классический статус ВК)" },
+      { points: 400, q: "Жизнь — это как езда на велосипеде. Чтобы сохранить равновесие, ты должен продолжать двигаться", a: "Философ / Ученый (Альберт Эйнштейн)", aImg: "https://images.meme-arsenal.com/b0beca6a30122cec1570838aab707194.jpg" },
+      { points: 600, q: "Брат может не быть другом, но друг — всегда брат", a: "Философ (Бенджамин Франклин, XVIII век)" },
+      { points: 800, q: "Если волк молчит, то лучше его не перебивать", a: "Пацанский паблик" },
+      { points: 1000, q: "Тот, кто делает вид, что у него всё есть, на самом деле не имеет ничего. А тот, кто делится последним, богат душой", a: "Философ (пересказ мысли Сократа / Конфуция)" }
+    ]
+  },
+  {
+    round: 3,
+    category: "Культовые мемы",
+    rules: "",
+    questions: [
+      { points: 200, q: "", qImg: "https://cs14.pikabu.ru/post_img/2022/12/10/10/1670692832292880942.jpg", a: "me gusta", aImg: "https://i.pinimg.com/736x/1d/53/ba/1d53baa70f66aaf9da03be1c655cf798.jpg" },
+      { points: 400, q: "", qImg: "https://kinoreporter.ru/wp-content/uploads/2020/06/shon.jpg", a: "Нельзя просто так взять и ...", aImg: "https://avatars.mds.yandex.net/get-znatoki/880589/2a0000016cc132eea4b82e26a6658a5a4539/w480" },
+      { points: 600, q: "", qImg: "https://i.ytimg.com/vi/zxD32CqHm60/hqdefault.jpg", a: "Я Никита Литвинков", aImg: "https://i.ytimg.com/vi/zxD32CqHm60/hqdefault.jpg" },
+      { points: 800, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr9RN8Esx6dbDh8VsAaouQlwSv5DopvR6HPQ&s", a: "Чувак, это репчик", aImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS--iqVRbjXOeejT3jx0wTlIzBUp5FmtjpBdg&s" },
+      { points: 1000, q: "", qImg: "https://memchik.ru/images/templates/omskaya_ptica.jpg", a: "Омская птица", aImg: "https://cs14.pikabu.ru/post_img/2022/12/09/9/1670596089183098248.jpg" }
+    ]
+  },
+  {
+    round: 3,
+    category: "Ли или не Ли",
+    rules: "",
+    questions: [
+      { points: 200, q: "", qImg: "https://avatars.mds.yandex.net/i?id=f990597e6851bbe64bf3c089ac105a33e5b47041-4076521-images-thumbs&n=13", a: "Настя Ли" },
+      { points: 400, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlm0s2iDsdkBC1T0lznzzTtLdZyIuhU_k4S4DsiHV1dGuSRlZX8hiJAY4&s=10", a: "Мохаммед Али" },
+      { points: 600, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvdNaQZKkLPYGoUQsJOy6cLkvpONDcFl-r9z8MEHJmSQ&s=10", a: "Сергей Ли" },
+      { points: 800, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPI2K5D6A9ORjH0xPxcRiN5CxQxLKBYt2-ixASADDiXw&s=10", a: "Либерж Кпадону" },
+      { points: 1000, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVfac1j_IXXoYye4wDekmgX5ZuSykFfiPgQyKL-ta4Tw&s", a: "Джим Ли" }
+    ]
+  },
+  {
+    round: 3,
+    category: "Что за фабрика?",
+    rules: "Нужно угадать в какой Фабрике звезд была звезда",
+    questions: [
+      { points: 200, q: "", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJzBM3b8IEoL6LohoiVnz-tsR40XxR-1HcGOymCaQC_upuDkoRwcyxAR1m&s=10", a: "4" },
+      { points: 400, q: "", qImg: "https://news.store.rambler.ru/img/983d5db313c827db0b4ca7654f489b3d", a: "1" },
+      { points: 600, q: "", qImg: "https://www.vokrug.tv/pic/news/e/6/f/d/e6fda1b8afd52f96885864f3d3f6534b.jpg", a: "3" },
+      { points: 800, q: "", qImg: "https://bnmusic.ru/wp-content/uploads/2019/12/Chelsi.jpg", a: "6" },
+      { points: 1000, q: "", qImg: "https://static.mk.ru/upload/entities/2022/06/22/11/photoreportsImages/detailPicture/8f/c5/c8/cc/e5b154a546e92125dbc6165cd857fe4e.jpg", a: "2" }
+    ]
+  },
+  {
+    round: 3,
+    category: "Дорого Богато",
+    rules: "",
+    questions: [
+      { points: 200, q: "Первый псевдоним Алексея Долматова, который звучит, как бренд люксовых часов", a: "Rolexx" },
+      { points: 400, q: "Этот итальянский бренд знатно офигел, когда узнал, что Тимати и Егор Крид без спроса открыли в Москве кафе с их названием", a: "Gucci" },
+      { points: 600, q: "Как ее зовут?", qImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQZJrnO0mE6wSYVQJG8n8HzC6iFrnwhkDD_S89AdFwAA&s=10", a: "Картье Бугатти" },
+      { points: 800, q: "Его зовут Джанлука Вакки, а как он известен в интернете?", qImg: "https://cdn.am.sputniknews.ru/img/823/19/8231947_0:0:999:627_1920x0_80_0_0_c91466aa6c98438f5f817de4b117f067.jpg", a: "Танцующий миллионер" },
+      { points: 1000, q: "Он раздает деньги потому что индусы притворяются что узнали его", qImg: "https://disk.yandex.ru/i/Y8tiE5ZEiffa_A", a: "Mr. Thank You" }
+    ]
+  }
+];
+
+const ROUNDS_DATA = [1,2,3].map(rn => ({
+  roundNum: rn,
+  categories: QUESTIONS.filter(c => c.round === rn && c.questions.length > 0)
+}));
+
+// ===== TRAPS (7 total) =====
+const TRAPS = [
+  { type:"compliment", emoji:"💋", name:"Подлижи ведущему",  desc:"5 комплиментов ведущей без запинки → +1000 баллов. Ведущий решает: засчитано или нет." },
+  { type:"luck",        emoji:"🍀", name:"Удачная лотка",     desc:"Фортуна на твоей стороне — просто получаешь 1000 баллов." },
+  { type:"warmup",      emoji:"🤝", name:"Подогреть бедолагу", desc:"Ты отдаёшь 1000 баллов игроку, у которого сейчас меньше всего очков." },
+  { type:"flip",        emoji:"🔄", name:"Минус на плюс",     desc:"У ВСЕХ игроков знак очков меняется на противоположный." },
+  { type:"underdog",    emoji:"🆘", name:"Вопрос уходит самому отстающему", desc:"Ты не отвечаешь — за тебя отвечает игрок с наименьшим счётом." },
+  { type:"luxury_tax",  emoji:"💸", name:"Налог на роскошь",  desc:"Зажрался! С тебя списывается 500 баллов." },
+  { type:"bonus_gift",  emoji:"🎉", name:"Пацанский подгон",  desc:"Выбери любого игрока за столом (не себя) — ему начислится 500 баллов." }
+];
+// ===== YANDEX DISK LINK CONVERTER =====
+const yandexCache = {};
+async function resolveYandexLink(url) {
+  if (!url || !url.includes('disk.yandex.ru')) return url;
+  if (yandexCache[url]) return yandexCache[url];
+  try {
+    const api = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(url);
+    const res = await fetch(api);
+    const data = await res.json();
+    if (data.href) { yandexCache[url] = data.href; return data.href; }
+  } catch(e) { console.warn('Yandex resolve failed', url, e); }
+  return url;
+}
+
+import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js').then(async ({initializeApp}) => {
+const { getDatabase, ref, set, get, onValue, push, update, remove } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
 
 const FB = {
-  apiKey: "AIzaSyDYPT9DXK5nVDutohOxORgAUWSLzpApevE",
-  authDomain: "my-game-d513c.firebaseapp.com",
-  databaseURL: "https://my-game-d513c-default-rtdb.firebaseio.com",
-  projectId: "my-game-d513c",
-  storageBucket: "my-game-d513c.firebasestorage.app",
-  messagingSenderId: "96446253861",
-  appId: "1:96446253861:web:356e3f19773f72bd1ca8cc"
+  apiKey:"AIzaSyDYPT9DXK5nVDutohOxORgAUWSLzpApevE",
+  authDomain:"my-game-d513c.firebaseapp.com",
+  databaseURL:"https://my-game-d513c-default-rtdb.firebaseio.com",
+  projectId:"my-game-d513c",
+  storageBucket:"my-game-d513c.firebasestorage.app",
+  messagingSenderId:"96446253861",
+  appId:"1:96446253861:web:356e3f19773f72bd1ca8cc"
 };
 const app = initializeApp(FB);
 const db = getDatabase(app);
-
-// ===== QUESTIONS =====
-const QUESTIONS = [
-  { category: "История", questions: [
-    { points:100, q:"В каком году началась Вторая мировая война?", a:"1939" },
-    { points:200, q:"Кто был первым президентом США?", a:"Джордж Вашингтон" },
-    { points:300, q:"В каком году пала Берлинская стена?", a:"1989" },
-    { points:400, q:"В каком году был подписан Брестский мир?", a:"1918" },
-    { points:500, q:"Назовите самую длинную войну в истории человечества.", a:"Столетняя война (1337–1453)" }
-  ]},
-  { category: "Наука", questions: [
-    { points:100, q:"Что такое H₂O?", a:"Вода" },
-    { points:200, q:"Сколько планет в Солнечной системе?", a:"8" },
-    { points:300, q:"Какой элемент обозначается символом Au?", a:"Золото" },
-    { points:400, q:"Какова скорость света в вакууме?", a:"≈ 300 000 км/с" },
-    { points:500, q:"Что изучает эпигенетика?", a:"Изменения экспрессии генов без изменения ДНК" }
-  ]},
-  { category: "Кино", questions: [
-    { points:100, q:"Кто снял «Интерстеллар»?", a:"Кристофер Нолан" },
-    { points:200, q:"В каком году вышел первый фильм о Гарри Поттере?", a:"2001" },
-    { points:300, q:"Как звали робота в «ВАЛЛ-И»?", a:"ВАЛЛ-И" },
-    { points:400, q:"В каком городе разворачивается «Крёстный отец»?", a:"Нью-Йорк" },
-    { points:500, q:"Назовите первый фильм, получивший «Оскар» за лучший фильм.", a:"Крылья (1927/28)" }
-  ]},
-  { category: "Спорт", questions: [
-    { points:100, q:"Сколько игроков в команде в баскетболе?", a:"5" },
-    { points:200, q:"В какой стране придумали футбол?", a:"Англия" },
-    { points:300, q:"Как называется главный приз Лиги чемпионов УЕФА?", a:"Кубок европейских чемпионов (Ухо)" },
-    { points:400, q:"Кто держит рекорд по титулам чемпиона мира Формулы-1?", a:"Льюис Хэмилтон и Михаэль Шумахер (по 7)" },
-    { points:500, q:"В каком году Бразилия впервые выиграла чемпионат мира по футболу?", a:"1958" }
-  ]},
-  { category: "Культура", questions: [
-    { points:100, q:"Кто написал «Война и мир»?", a:"Лев Толстой" },
-    { points:200, q:"В каком музее хранится «Джоконда»?", a:"Лувр, Париж" },
-    { points:300, q:"Сколько симфоний написал Бетховен?", a:"9" },
-    { points:400, q:"Кто автор картины «Крик»?", a:"Эдвард Мунк" },
-    { points:500, q:"Как звали сестёр Элизабет Беннет в «Гордости и предубеждении»?", a:"Джейн, Мэри, Китти, Лидия" }
-  ]}
-];
-
-const TRAPS = [
-  { type:"transfer", emoji:"🔀", name:"Передай вопрос",       desc:"Ты должен передать вопрос другому игроку." },
-  { type:"auction",  emoji:"💰", name:"Аукцион",              desc:"Все делают ставки! Кто больше — тот отвечает." },
-  { type:"bag",      emoji:"🎁", name:"Кот в мешке",          desc:"Вопрос уходит случайному игроку автоматически!" },
-  { type:"minus",    emoji:"💀", name:"Чёрная метка",         desc:"Кому-то спишут −1000 баллов." },
-  { type:"gift",     emoji:"🌟", name:"Невиданная щедрость",  desc:"Кому-то начислят +1500 баллов!" }
-];
 
 let players = [];
 let scores = {};
 let trapMap = {};
 let currentQ = null;
-let buzzers = [];
+let currentRound = 1;
+let activeBuzzerName = null; // who is currently allowed to answer
+let attemptedPlayers = []; // players who already tried this question
+let missCount = 0;
 let showingAns = false;
-let auctionWinner = null;
-let transferTarget = null;
+let lastAnswererOverride = null; // for traps/auctions
 
 // ===== LOBBY =====
 function setPlayerLink() {
   const url = window.location.href.replace('host.html','player.html');
   const el = document.getElementById('player-link');
-  el.textContent = url;
-  el._url = url;
+  el.textContent = url; el._url = url;
 }
 setPlayerLink();
 window.copyLink = () => {
@@ -289,30 +447,16 @@ onValue(ref(db,'game/connected'), snap => {
   renderChips(names);
   const btn = document.getElementById('btn-start');
   btn.disabled = names.length < 2;
-  btn.textContent = names.length < 2
-    ? `Начать игру (нужно минимум 2 игрока)`
-    : `Начать игру — ${names.length} игрок${names.length===1?'':names.length<5?'а':'ов'}`;
+  btn.textContent = names.length < 2 ? `Начать игру (нужно минимум 2 игрока)` : `Начать игру — ${names.length} игроков`;
 });
 
 function renderChips(names) {
   const wrap = document.getElementById('player-chips');
   document.getElementById('pw-count').textContent = `${names.length} / 8`;
-  if (!names.length) {
-    wrap.innerHTML = '<div class="empty-hint">Никого нет — жди игроков по ссылке выше</div>';
-    return;
-  }
-  wrap.innerHTML = names.map(n => `
-    <div class="player-chip">
-      <div class="chip-dot"></div>
-      <span>${n}</span>
-      <button class="chip-remove" onclick="kickPlayer('${n}')" title="Удалить">×</button>
-    </div>`).join('');
+  if (!names.length) { wrap.innerHTML = '<div class="empty-hint">Никого нет — жди игроков по ссылке выше</div>'; return; }
+  wrap.innerHTML = names.map(n => `<div class="player-chip"><div class="chip-dot"></div><span>${n}</span><button class="chip-remove" onclick="kickPlayer('${n}')">×</button></div>`).join('');
 }
-
-window.kickPlayer = function(name) {
-  const key = name.replace(/\s/g,'_');
-  remove(ref(db, `game/connected/${key}`));
-};
+window.kickPlayer = function(name) { remove(ref(db, `game/connected/${name.replace(/\s/g,'_')}`)); };
 
 window.startGame = function() {
   get(ref(db,'game/connected')).then(snap => {
@@ -321,60 +465,68 @@ window.startGame = function() {
     if (players.length < 2) return;
     players.forEach(p => scores[p] = 0);
     trapMap = generateTraps();
-    set(ref(db,'game'), {
-      state: 'board',
-      players,
-      scores,
-      connected: data,
-      currentQuestion: null,
-      buzzers: null,
-      activeBuzzer: false
-    });
+    set(ref(db,'game'), { state:'board', players, scores, connected:data, currentQuestion:null, buzzers:null, activeBuzzer:false, currentRound:1 });
     showScreen('game-screen');
-    renderBoard();
+    renderRoundTabs();
+    renderBoard(1);
     renderScores();
     listenBuzzers();
   });
 };
 
 function generateTraps() {
-  const all = [];
-  QUESTIONS.forEach((cat,ci) => cat.questions.forEach((_,qi) => all.push(`${ci}-${qi}`)));
-  for (let i = all.length-1; i>0; i--) { const j=Math.floor(Math.random()*(i+1)); [all[i],all[j]]=[all[j],all[i]]; }
-  const chosen = all.slice(0,5);
+  const allKeys = [];
+  ROUNDS_DATA.forEach(r => r.categories.forEach((cat,ci) => cat.questions.forEach((_,qi) => allKeys.push(`${r.roundNum}-${cat.category}-${qi}`))));
+  for (let i=allKeys.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [allKeys[i],allKeys[j]]=[allKeys[j],allKeys[i]]; }
+  const chosen = allKeys.slice(0, Math.min(7, allKeys.length));
   const map = {};
-  chosen.forEach((key,i) => map[key] = TRAPS[i]);
+  chosen.forEach((key,i) => map[key] = TRAPS[i % TRAPS.length]);
   return map;
 }
 
-// ===== BOARD =====
-function renderBoard() {
+// ===== ROUND TABS & BOARD =====
+function renderRoundTabs() {
+  const wrap = document.getElementById('round-tabs');
+  wrap.innerHTML = ROUNDS_DATA.map(r => `<div class="round-tab ${r.roundNum===currentRound?'active':''}" onclick="switchRound(${r.roundNum})">Раунд ${r.roundNum}</div>`).join('');
+}
+window.switchRound = function(rn) {
+  currentRound = rn;
+  document.getElementById('round-badge').textContent = `Раунд ${rn}`;
+  renderRoundTabs();
+  renderBoard(rn);
+  update(ref(db,'game'), { currentRound: rn });
+};
+
+function renderBoard(rn) {
   const board = document.getElementById('board');
   board.innerHTML = '';
-  board.style.gridTemplateColumns = `repeat(${QUESTIONS.length},1fr)`;
-  QUESTIONS.forEach(cat => {
-    const h = document.createElement('div');
-    h.className = 'cat-hdr'; h.textContent = cat.category;
-    board.appendChild(h);
-  });
-  const maxQ = Math.max(...QUESTIONS.map(c=>c.questions.length));
-  for (let qi=0; qi<maxQ; qi++) {
-    QUESTIONS.forEach((cat,ci) => {
+  const data = ROUNDS_DATA.find(r=>r.roundNum===rn);
+  if (!data) return;
+  data.categories.forEach((cat) => {
+    const row = document.createElement('div');
+    row.className = 'board-row';
+    const label = document.createElement('div');
+    label.className = 'cat-label';
+    label.textContent = cat.category;
+    row.appendChild(label);
+    const maxCols = 5;
+    for (let qi=0; qi<maxCols; qi++) {
       const q = cat.questions[qi];
-      if (!q) { board.appendChild(document.createElement('div')); return; }
       const cell = document.createElement('div');
+      if (!q) { cell.className='q-cell empty'; row.appendChild(cell); continue; }
       cell.className = 'q-cell';
-      cell.id = `cell-${ci}-${qi}`;
+      const cellId = `cell-${rn}-${cat.category}-${qi}`.replace(/\s/g,'_');
+      cell.id = cellId;
       cell.textContent = q.points;
-      if (trapMap[`${ci}-${qi}`]) {
-        const tc = document.createElement('span');
-        tc.className='trap-corner'; tc.textContent='?';
-        cell.appendChild(tc);
+      const trapKey = `${rn}-${cat.category}-${qi}`;
+      if (trapMap[trapKey]) {
+        const tc=document.createElement('span'); tc.className='trap-corner'; tc.textContent='?'; cell.appendChild(tc);
       }
-      cell.addEventListener('click', () => openQuestion(ci,qi));
-      board.appendChild(cell);
-    });
-  }
+      cell.addEventListener('click', () => openQuestion(rn, cat, qi));
+      row.appendChild(cell);
+    }
+    board.appendChild(row);
+  });
 }
 
 // ===== SCORES =====
@@ -382,29 +534,28 @@ function renderScores() {
   const bar = document.getElementById('scores-bar');
   bar.innerHTML = '';
   players.forEach(p => {
-    const k = p.replace(/\s/g,'_');
-    const c = document.createElement('div');
-    c.className='score-card'; c.id=`sc-${k}`;
-    c.innerHTML=`<div class="score-name">${p}</div><div class="score-pts" id="pts-${k}">${scores[p]}</div><div class="buz-dot" id="buz-${k}"></div>`;
+    const k=p.replace(/\s/g,'_');
+    const c=document.createElement('div'); c.className='score-card'; c.id=`sc-${k}`;
+    c.innerHTML=`<div class="score-name">${p}</div><div class="score-pts" id="pts-${k}">${scores[p]}</div><div class="buz-dot" id="buz-${k}"></div><div class="strike-dot" id="strike-${k}"></div>`;
     bar.appendChild(c);
   });
 }
-
 function updateScores() {
-  players.forEach(p => {
-    const k=p.replace(/\s/g,'_');
-    const el=document.getElementById(`pts-${k}`);
-    if (el) { el.textContent=scores[p]; el.className='score-pts'+(scores[p]<0?' neg':''); }
-  });
+  players.forEach(p => { const k=p.replace(/\s/g,'_'); const el=document.getElementById(`pts-${k}`); if(el){ el.textContent=scores[p]; el.className='score-pts'+(scores[p]<0?' neg':''); } });
 }
 
-// ===== BUZZERS =====
+// ===== BUZZERS LISTENER =====
 function listenBuzzers() {
   onValue(ref(db,'game/buzzers'), snap => {
     const data = snap.val();
-    if (!data) { buzzers=[]; clearBuzUI(); return; }
-    buzzers = Object.values(data).sort((a,b)=>a.ts-b.ts);
-    if (buzzers.length && currentQ && !showingAns) showBuzResult();
+    if (!data || !currentQ) return;
+    const list = Object.values(data).sort((a,b)=>a.ts-b.ts);
+    // Find first presser not already attempted
+    const candidate = list.find(b => !attemptedPlayers.includes(b.name));
+    if (candidate && candidate.name !== activeBuzzerName && !showingAns) {
+      activeBuzzerName = candidate.name;
+      showActiveAnswerer();
+    }
   });
   onValue(ref(db,'game/connected'), snap => {
     const n = snap.val() ? Object.keys(snap.val()).length : 0;
@@ -413,142 +564,235 @@ function listenBuzzers() {
   });
 }
 
-function clearBuzUI() {
-  players.forEach(p => { const el=document.getElementById(`buz-${p.replace(/\s/g,'_')}`); if(el) el.classList.remove('lit'); });
-}
-
-function showBuzResult() {
+function showActiveAnswerer() {
   document.getElementById('buzz-box').classList.add('show');
-  document.getElementById('buzz-name').textContent = buzzers[0].name;
-  document.getElementById('buzz-next').textContent = buzzers.length>1 ? 'Далее: '+buzzers.slice(1).map(b=>b.name).join(' → ') : '';
-  clearBuzUI();
-  const el=document.getElementById(`buz-${buzzers[0].name.replace(/\s/g,'_')}`);
-  if(el) el.classList.add('lit');
+  document.getElementById('buzz-name').textContent = activeBuzzerName;
+  players.forEach(p => { const el=document.getElementById(`buz-${p.replace(/\s/g,'_')}`); if(el) el.classList.remove('lit'); });
+  const el = document.getElementById(`buz-${activeBuzzerName.replace(/\s/g,'_')}`);
+  if (el) el.classList.add('lit');
+  update(ref(db,'game'), { activeAnswerer: activeBuzzerName });
   renderActions();
 }
 
 // ===== OPEN QUESTION =====
-function openQuestion(ci,qi) {
-  const cell=document.getElementById(`cell-${ci}-${qi}`);
+function openQuestion(rn, cat, qi) {
+  const cellId = `cell-${rn}-${cat.category}-${qi}`.replace(/\s/g,'_');
+  const cell = document.getElementById(cellId);
   if (cell && cell.classList.contains('used')) return;
-  const cat=QUESTIONS[ci], q=cat.questions[qi];
-  const trap=trapMap[`${ci}-${qi}`]||null;
-  currentQ={ci,qi,cat:cat.category,q:q.q,a:q.a,points:q.points,image:q.image||null,trap};
-  buzzers=[]; showingAns=false; auctionWinner=null; transferTarget=null;
-  set(ref(db,'game/buzzers'),null);
-  update(ref(db,'game'),{
-    currentQuestion:{cat:cat.category,q:q.q,points:q.points,image:q.image||null,trapType:trap?trap.type:null},
-    state: trap?'trap':'question',
-    activeBuzzer: !trap
+  const q = cat.questions[qi];
+  const trapKey = `${rn}-${cat.category}-${qi}`;
+  const trap = trapMap[trapKey] || null;
+  currentQ = { rn, cat: cat.category, rules: cat.rules, cellId, points:q.points, q:q.q, qImg:q.qImg, a:q.a, aImg:q.aImg, trap };
+  attemptedPlayers = []; missCount = 0; showingAns = false; activeBuzzerName = null; lastAnswererOverride = null;
+  set(ref(db,'game/buzzers'), null);
+  update(ref(db,'game'), {
+    currentQuestion: { cat: cat.category, rules: cat.rules, q:q.q, qImg:q.qImg||null, points:q.points, trapType: trap?trap.type:null },
+    state: trap ? 'trap' : 'question',
+    activeBuzzer: !trap,
+    activeAnswerer: null,
+    missCount: 0
   });
   if (trap) openTrapModal(trap);
   else openQModal();
 }
 
-function openQModal() {
+async function openQModal() {
   document.getElementById('m-pts').textContent = `${currentQ.points} очков · ${currentQ.cat}`;
-  document.getElementById('m-q').textContent = currentQ.q;
-  const img=document.getElementById('m-img');
-  if (currentQ.image) { img.src=currentQ.image; img.style.display='block'; } else img.style.display='none';
+  document.getElementById('m-rules').textContent = currentQ.rules || '';
+  document.getElementById('m-q').textContent = currentQ.q || '(только картинка)';
+  const img = document.getElementById('m-img');
+  if (currentQ.qImg) {
+    img.style.display='block'; img.src = await resolveYandexLink(currentQ.qImg);
+  } else img.style.display='none';
   document.getElementById('buzz-box').classList.remove('show');
   document.getElementById('ans-box').classList.remove('show');
+  renderAttempts();
   renderActions();
   document.getElementById('q-overlay').classList.add('open');
 }
 
-function renderActions() {
-  const div=document.getElementById('m-actions'); div.innerHTML='';
-  if (!showingAns) {
-    const b=document.createElement('button'); b.className='btn y'; b.textContent='Показать ответ'; b.onclick=revealAns; div.appendChild(b);
-  } else {
-    const resp=auctionWinner||transferTarget||(buzzers.length?buzzers[0].name:null);
-    if (resp) {
-      const bc=document.createElement('button'); bc.className='btn g';
-      bc.textContent=`✓ ${resp} прав (+${currentQ.points})`; bc.onclick=()=>applyScore(resp,currentQ.points); div.appendChild(bc);
-      const br=document.createElement('button'); br.className='btn r';
-      br.textContent=`✗ ${resp} неправ (−${currentQ.points})`; br.onclick=()=>applyScore(resp,-currentQ.points); div.appendChild(br);
-    }
-    if (buzzers.length>1) {
-      const nb=document.createElement('button'); nb.className='btn';
-      nb.textContent=`Отвечает ${buzzers[1].name}`; nb.onclick=()=>{ buzzers.shift(); showBuzResult(); }; div.appendChild(nb);
-    }
+function renderAttempts() {
+  const row = document.getElementById('attempts-row');
+  row.innerHTML='';
+  for (let i=0;i<3;i++) {
+    const pip = document.createElement('div');
+    pip.className = 'attempt-pip' + (i < missCount ? ' miss' : '');
+    pip.textContent = i < missCount ? '✗' : (i+1);
+    row.appendChild(pip);
   }
-  const sb=document.createElement('button'); sb.className='btn'; sb.textContent='Закрыть вопрос'; sb.onclick=closeQ; div.appendChild(sb);
 }
 
-function revealAns() {
-  showingAns=true;
-  document.getElementById('ans-text').textContent=currentQ.a;
+function renderActions() {
+  const div = document.getElementById('m-actions'); div.innerHTML='';
+  if (!showingAns) {
+    const responder = lastAnswererOverride || activeBuzzerName;
+    if (responder) {
+      const correct = document.createElement('button'); correct.className='btn g';
+      correct.textContent = `✓ ${responder} прав (+${currentQ.points})`;
+      correct.onclick = () => markResult(responder, true);
+      div.appendChild(correct);
+      const wrong = document.createElement('button'); wrong.className='btn r';
+      wrong.textContent = `✗ ${responder} неправ (−${currentQ.points})`;
+      wrong.onclick = () => markResult(responder, false);
+      div.appendChild(wrong);
+    } else {
+      const hint = document.createElement('div');
+      hint.style.cssText='font-size:13px;color:rgba(255,255,255,0.4);padding:8px 0;';
+      hint.textContent = 'Жду нажатия кнопки от игрока...';
+      div.appendChild(hint);
+    }
+    const showAns = document.createElement('button'); showAns.className='btn y';
+    showAns.textContent='Показать ответ (досрочно)'; showAns.onclick=revealAnswer;
+    div.appendChild(showAns);
+  } else {
+    // already revealed
+  }
+  const closeBtn = document.createElement('button'); closeBtn.className='btn';
+  closeBtn.textContent='Закрыть вопрос'; closeBtn.onclick=closeQ;
+  div.appendChild(closeBtn);
+}
+
+function markResult(player, correct) {
+  if (correct) {
+    scores[player] = (scores[player]||0) + currentQ.points;
+    updateScores(); update(ref(db,'game'), { scores });
+    notify(`${player}: +${currentQ.points}`);
+    closeQ();
+  } else {
+    scores[player] = (scores[player]||0) - currentQ.points;
+    updateScores(); update(ref(db,'game'), { scores });
+    notify(`${player}: −${currentQ.points}`);
+    attemptedPlayers.push(player);
+    missCount++;
+    activeBuzzerName = null;
+    lastAnswererOverride = null;
+    renderAttempts();
+    document.getElementById('buzz-box').classList.remove('show');
+    set(ref(db,'game/buzzers'), null);
+    update(ref(db,'game'), { activeAnswerer:null, missCount, attemptedPlayers });
+    if (missCount >= 3 || attemptedPlayers.length >= players.length) {
+      revealAnswer();
+    } else {
+      update(ref(db,'game'), { activeBuzzer:true });
+      renderActions();
+    }
+  }
+}
+
+async function revealAnswer() {
+  showingAns = true;
+  document.getElementById('ans-text').textContent = currentQ.a || '(см. картинку)';
+  const aimg = document.getElementById('ans-img');
+  if (currentQ.aImg) { aimg.style.display='block'; aimg.src = await resolveYandexLink(currentQ.aImg); } else aimg.style.display='none';
   document.getElementById('ans-box').classList.add('show');
+  update(ref(db,'game'), { activeBuzzer:false });
   renderActions();
 }
 
-function applyScore(p,delta) {
-  scores[p]=(scores[p]||0)+delta;
-  updateScores(); update(ref(db,'game'),{scores});
-  closeQ(); notify(`${p}: ${delta>0?'+':''}${delta}`);
-}
-
 function closeQ() {
-  if (currentQ) { const cell=document.getElementById(`cell-${currentQ.ci}-${currentQ.qi}`); if(cell) cell.classList.add('used'); }
+  if (currentQ) { const cell=document.getElementById(currentQ.cellId); if(cell) cell.classList.add('used'); }
   document.getElementById('q-overlay').classList.remove('open');
   document.getElementById('trap-overlay').classList.remove('open');
-  set(ref(db,'game/buzzers'),null);
-  update(ref(db,'game'),{state:'board',currentQuestion:null,activeBuzzer:false});
-  currentQ=null; buzzers=[]; auctionWinner=null; transferTarget=null; showingAns=false; clearBuzUI();
-  checkEnd();
+  set(ref(db,'game/buzzers'), null);
+  update(ref(db,'game'), { state:'board', currentQuestion:null, activeBuzzer:false, activeAnswerer:null });
+  currentQ=null; activeBuzzerName=null; attemptedPlayers=[]; missCount=0; showingAns=false; lastAnswererOverride=null;
+  players.forEach(p => { const el=document.getElementById(`buz-${p.replace(/\s/g,'_')}`); if(el) el.classList.remove('lit'); });
+  checkRoundEnd();
 }
 
 // ===== TRAP MODAL =====
 function openTrapModal(trap) {
-  const c=document.getElementById('trap-content');
-  let html=`<div class="trap-em">${trap.emoji}</div><div class="trap-title">${trap.name}</div><div class="trap-desc">${trap.desc}</div>`;
-  if (trap.type==='transfer') {
-    const opts=players.map(p=>`<option>${p}</option>`).join('');
-    html+=`<select class="trap-sel" id="tsel">${opts}</select>
-      <div class="trap-btns"><button class="btn y" onclick="doTransfer()">Передать вопрос</button><button class="btn" onclick="closeQ()">Отмена</button></div>`;
-  } else if (trap.type==='auction') {
-    html+=`<div class="auction-rows">`;
-    players.forEach(p=>{ html+=`<div class="auction-row"><div class="auction-row-name">${p} (${scores[p]})</div><input type="number" id="bid-${p.replace(/\s/g,'_')}" placeholder="Ставка" min="0"></div>`; });
-    html+=`</div><div class="trap-btns"><button class="btn y" onclick="doAuction()">Определить победителя</button><button class="btn" onclick="closeQ()">Отмена</button></div>`;
-  } else if (trap.type==='bag') {
-    const rand=players[Math.floor(Math.random()*players.length)];
-    transferTarget=rand;
-    html+=`<div style="font-size:30px;font-weight:700;color:#f5c842;margin-bottom:20px;">${rand}</div>
-      <div class="trap-btns"><button class="btn y" onclick="doBag()">Задать вопрос</button><button class="btn" onclick="closeQ()">Закрыть</button></div>`;
-  } else if (trap.type==='minus') {
-    html+=`<div class="trap-btns" style="flex-wrap:wrap;">`;
-    players.forEach(p=>{ html+=`<button class="btn r" onclick="doTrapScore('${p}',-1000)">${p} −1000</button>`; });
-    html+=`<button class="btn" onclick="closeQ()">Отмена</button></div>`;
-  } else if (trap.type==='gift') {
-    html+=`<div class="trap-btns" style="flex-wrap:wrap;">`;
-    players.forEach(p=>{ html+=`<button class="btn g" onclick="doTrapScore('${p}',1500)">${p} +1500</button>`; });
-    html+=`<button class="btn" onclick="closeQ()">Отмена</button></div>`;
+  const c = document.getElementById('trap-content');
+  let html = `<div class="trap-em">${trap.emoji}</div><div class="trap-title">${trap.name}</div><div class="trap-desc">${trap.desc}</div>`;
+  if (trap.type==='compliment' || trap.type==='luck') {
+    html += `<div class="trap-btns">
+      <button class="btn g" onclick="trapGiveScore(null,1000,true)">Засчитано (+1000)</button>
+      ${trap.type==='compliment' ? '<button class="btn r" onclick="closeQ()">Не засчитано</button>' : ''}
+    </div>`;
+  } else if (trap.type==='warmup') {
+    html += `<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Кто выбрал вопрос?</div><div class="trap-btns">`;
+    players.forEach(p => html += `<button class="btn" onclick="doWarmup('${p}')">${p}</button>`);
+    html += `</div>`;
+  } else if (trap.type==='flip') {
+    html += `<div class="trap-btns"><button class="btn y" onclick="doFlip()">Поменять знаки у всех</button></div>`;
+  } else if (trap.type==='underdog') {
+    const minScore = Math.min(...players.map(p=>scores[p]));
+    const underdog = players.find(p=>scores[p]===minScore);
+    html += `<div style="font-size:28px;font-weight:700;color:#f5c842;margin-bottom:20px;">${underdog}</div>
+      <div class="trap-btns"><button class="btn y" onclick="doUnderdog('${underdog}')">Задать вопрос</button><button class="btn" onclick="closeQ()">Закрыть</button></div>`;
+  } else if (trap.type==='luxury_tax') {
+    html += `<div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:12px;">Кто выбрал вопрос?</div><div class="trap-btns">`;
+    players.forEach(p => html += `<button class="btn r" onclick="doLuxuryTax('${p}')">${p} −500</button>`);
+    html += `</div>`;
+  } else if (trap.type==='bonus_gift') {
+    html += `<div class="trap-btns">`;
+    players.forEach(p => html += `<button class="btn g" onclick="trapGiveScore('${p}',500,true)">${p} +500</button>`);
+    html += `</div>`;
   }
-  c.innerHTML=html;
+  html += `<div style="margin-top:14px;"><button class="btn" onclick="closeQ()">Отмена / Закрыть</button></div>`;
+  c.innerHTML = html;
   document.getElementById('trap-overlay').classList.add('open');
 }
 
-window.doTransfer=()=>{ transferTarget=document.getElementById('tsel').value; document.getElementById('trap-overlay').classList.remove('open'); document.getElementById('buzz-box').classList.add('show'); document.getElementById('buzz-name').textContent=transferTarget; document.getElementById('buzz-next').textContent=''; openQModal(); update(ref(db,'game'),{state:'question',activeBuzzer:false}); };
-window.doAuction=()=>{ let max=-1,winner=null; players.forEach(p=>{ const v=parseInt(document.getElementById(`bid-${p.replace(/\s/g,'_')}`).value)||0; if(v>max){max=v;winner=p;} }); auctionWinner=winner; document.getElementById('trap-overlay').classList.remove('open'); document.getElementById('buzz-box').classList.add('show'); document.getElementById('buzz-name').textContent=`${winner} (ставка ${max})`; document.getElementById('buzz-next').textContent=''; openQModal(); update(ref(db,'game'),{state:'question',activeBuzzer:false}); };
-window.doBag=()=>{ document.getElementById('trap-overlay').classList.remove('open'); document.getElementById('buzz-box').classList.add('show'); document.getElementById('buzz-name').textContent=transferTarget; document.getElementById('buzz-next').textContent=''; openQModal(); update(ref(db,'game'),{state:'question',activeBuzzer:false}); };
-window.doTrapScore=(p,d)=>{ scores[p]=(scores[p]||0)+d; updateScores(); update(ref(db,'game'),{scores}); closeQ(); notify(`${p}: ${d>0?'+':''}${d}`); };
+window.trapGiveScore = function(player, amount, close) {
+  if (player) { scores[player] = (scores[player]||0) + amount; }
+  updateScores(); update(ref(db,'game'), { scores });
+  notify(player ? `${player}: +${amount}` : `+${amount} начислено`);
+  if (close) closeQ();
+};
+window.doWarmup = function(chooser) {
+  const minScore = Math.min(...players.map(p=>scores[p]));
+  const target = players.find(p=>scores[p]===minScore && p!==chooser) || players.find(p=>scores[p]===minScore);
+  scores[chooser] = (scores[chooser]||0) - 1000;
+  scores[target] = (scores[target]||0) + 1000;
+  updateScores(); update(ref(db,'game'), { scores });
+  notify(`${chooser} → ${target}: 1000 баллов`);
+  closeQ();
+};
+window.doFlip = function() {
+  players.forEach(p => scores[p] = -scores[p]);
+  updateScores(); update(ref(db,'game'), { scores });
+  notify('Все знаки очков изменены!');
+  closeQ();
+};
+window.doUnderdog = function(target) {
+  document.getElementById('trap-overlay').classList.remove('open');
+  lastAnswererOverride = target;
+  openQModal();
+  update(ref(db,'game'), { state:'question', activeBuzzer:false });
+};
+window.doLuxuryTax = function(chooser) {
+  scores[chooser] = (scores[chooser]||0) - 500;
+  updateScores(); update(ref(db,'game'), { scores });
+  notify(`${chooser}: −500`);
+  closeQ();
+};
 
-// ===== END =====
-function checkEnd() {
-  const total=QUESTIONS.reduce((s,c)=>s+c.questions.length,0);
-  const used=document.querySelectorAll('.q-cell.used').length;
-  if (used>=total) setTimeout(showEnd,800);
+// ===== ROUND/GAME END =====
+function checkRoundEnd() {
+  const data = ROUNDS_DATA.find(r=>r.roundNum===currentRound);
+  const total = data.categories.reduce((s,c)=>s+c.questions.length,0);
+  const used = document.querySelectorAll('.q-cell.used').length;
+  // count used cells only within visible board (current round) roughly
+  const usedInRound = Array.from(document.querySelectorAll('.q-cell.used')).filter(el=>el.id.startsWith(`cell-${currentRound}-`)).length;
+  if (usedInRound >= total) {
+    const isLast = currentRound === ROUNDS_DATA[ROUNDS_DATA.length-1].roundNum;
+    if (isLast) setTimeout(showEnd, 800);
+    else notify(`Раунд ${currentRound} завершён! Переключи на следующий раунд.`);
+  }
 }
+
 function showEnd() {
   const sorted=[...players].sort((a,b)=>scores[b]-scores[a]);
   const medals=['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣'];
-  document.getElementById('end-results').innerHTML=sorted.map((p,i)=>`<div class="end-row ${i===0?'first':''}"><div class="end-place">${medals[i]}</div><div class="end-pname">${p}</div><div class="end-pts">${scores[p]}</div></div>`).join('');
-  showScreen('end-screen'); update(ref(db,'game'),{state:'end'});
+  document.getElementById('end-results').innerHTML = sorted.map((p,i)=>`<div class="end-row ${i===0?'first':''}"><div class="end-place">${medals[i]}</div><div class="end-pname">${p}</div><div class="end-pts">${scores[p]}</div></div>`).join('');
+  showScreen('end-screen'); update(ref(db,'game'), { state:'end' });
 }
 
 function showScreen(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 function notify(msg) { const el=document.getElementById('notif'); el.textContent=msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),2500); }
+
+});
 </script>
 </body>
 </html>
