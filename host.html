@@ -102,6 +102,7 @@
   /* TRAP MODAL */
   .trap-modal { background: #130a20; border: 1px solid rgba(255,107,107,0.25); border-radius: 20px; padding: 32px; width: 520px; max-width: 100%; text-align: center; }
   .trap-em { font-size: 64px; margin-bottom: 12px; }
+  .trap-label { font-size: 13px; color: #ff6b6b; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 4px; }
   .trap-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #ff8c69; letter-spacing: 2px; margin-bottom: 8px; }
   .trap-desc { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 22px; line-height: 1.5; }
   .trap-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
@@ -382,7 +383,7 @@ const ROUNDS_DATA = [1,2,3].map(rn => ({
 // ===== TRAPS (7 total) =====
 const TRAPS = [
   { type:"compliment", emoji:"💋", name:"Подлижи ведущему",  desc:"5 комплиментов ведущей без запинки → +1000 баллов. Ведущий решает: засчитано или нет." },
-  { type:"luck",        emoji:"🍀", name:"Удачная лотка",     desc:"Фортуна на твоей стороне — просто получаешь 1000 баллов." },
+  { type:"luck",        emoji:"🍀", name:"Удачная лутка",     desc:"Фортуна на твоей стороне — просто получаешь 1000 баллов." },
   { type:"warmup",      emoji:"🤝", name:"Подогреть бедолагу", desc:"Ты отдаёшь 1000 баллов игроку, у которого сейчас меньше всего очков." },
   { type:"flip",        emoji:"🔄", name:"Минус на плюс",     desc:"У ВСЕХ игроков знак очков меняется на противоположный." },
   { type:"underdog",    emoji:"🆘", name:"Вопрос уходит самому отстающему", desc:"Ты не отвечаешь — за тебя отвечает игрок с наименьшим счётом." },
@@ -703,7 +704,7 @@ function closeQ() {
 // ===== TRAP MODAL =====
 function openTrapModal(trap) {
   const c = document.getElementById('trap-content');
-  let html = `<div class="trap-em">${trap.emoji}</div><div class="trap-title">${trap.name}</div><div class="trap-desc">${trap.desc}</div>`;
+  let html = `<div class="trap-em">${trap.emoji}</div><div class="trap-label">⚠ Ловушка!</div><div class="trap-title">${trap.name}</div><div class="trap-desc">${trap.desc}</div>`;
   if (trap.type==='compliment' || trap.type==='luck') {
     html += `<div class="trap-btns">
       <button class="btn g" onclick="trapGiveScore(null,1000,true)">Засчитано (+1000)</button>
