@@ -456,7 +456,14 @@ let lastAnswererOverride = null; // for traps/auctions
 
 // ===== LOBBY =====
 function setPlayerLink() {
-  const url = window.location.href.replace('host.html','player.html');
+  let url;
+  const path = window.location.pathname;
+  if (path.endsWith('host.html')) {
+    url = window.location.href.replace('host.html', 'player.html');
+  } else {
+    // accessed via folder root (e.g. .../svoya-igra/) — append player.html
+    url = window.location.href.replace(/\/?$/, '/') + 'player.html';
+  }
   const el = document.getElementById('player-link');
   el.textContent = url; el._url = url;
   renderQR(url);
