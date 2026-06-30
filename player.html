@@ -55,6 +55,7 @@
   .buz-status.wrong { color:#ff6b6b; font-weight:600; }
 
   .trap-em { font-size:80px; text-align:center; margin-bottom:14px; }
+  .trap-label { font-size: 12px; color: #ff6b6b; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; text-align: center; margin-bottom: 4px; }
   .trap-nm { font-size:26px; font-weight:800; color:#f5c842; text-align:center; margin-bottom:10px; }
   .trap-dc { font-size:16px; color:rgba(255,255,255,0.55); text-align:center; line-height:1.6; }
 </style>
@@ -97,6 +98,7 @@
 
 <div id="trap-screen" class="screen">
   <div class="trap-em" id="t-em"></div>
+  <div class="trap-label">⚠ Ловушка!</div>
   <div class="trap-nm" id="t-nm"></div>
   <div class="trap-dc" id="t-dc"></div>
   <div class="my-pts" style="margin-top:40px;"><div class="my-pts-lbl">Мои очки</div><div class="my-pts-val" id="t-pts">0</div></div>
@@ -121,7 +123,7 @@ const db = getDatabase(app);
 
 const TRAP_INFO = {
   compliment:{emoji:'💋',name:'Подлижи ведущему',desc:'5 комплиментов ведущей без запинки → +1000 баллов.'},
-  luck:      {emoji:'🍀',name:'Удачная лотка',desc:'Просто получаешь 1000 баллов!'},
+  luck:      {emoji:'🍀',name:'Удачная лутка',desc:'Просто получаешь 1000 баллов!'},
   warmup:    {emoji:'🤝',name:'Подогреть бедолагу',desc:'Отдаёшь 1000 баллов отстающему игроку.'},
   flip:      {emoji:'🔄',name:'Минус на плюс',desc:'У всех знак очков меняется на противоположный!'},
   underdog:  {emoji:'🆘',name:'Вопрос уходит самому отстающему',desc:'Отвечает игрок с наименьшим счётом.'},
